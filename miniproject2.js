@@ -5,7 +5,7 @@ event1.addEventListener('click', inputOutput, false);
 function inputOutput() {
     
     calculateInterest();
-    
+        
 }
 
 function calculateInterest(){
