@@ -35,19 +35,25 @@ for (var i = 0; i < questionList.length; i++) {
 function answerCheck() {
     
     var matchArray = 0;
+    var score = 0;
+    var outputString = "";
     
     for (var i = 0; i < questionList.length; i++) {
         
         matchArray = parseInt(document.getElementById(inputTags[i]).value);
         
         if (matchArray === questionList[i].correct){
-            document.getElementById("result1").innerHTML = "That was the correct answer, Congratulations!";
+            outputString += "That was the correct answer to Question " + (i + 1) + ", congratulations!" + "</br>";
+            score++;
         }
         
         else {
-            document.getElementById("result1").innerHTML = "Wrong answer, please try again";
+            outputString +=  "Wrong answer to Question " + (i + 1) + ", please try again." + "</br>";
             document.getElementById(inputTags[i]).value = "";
         }
+        
+        document.getElementById("result1").innerHTML = outputString;
+        document.getElementById("result2").innerHTML = "Score = " + score + " / " + questionList.length + ".";
         
     }
         
