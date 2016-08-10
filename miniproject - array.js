@@ -1,8 +1,6 @@
 var entries = [];
 var outputString = ""; 
 
-printArray();
-
 var event1 = document.getElementById("button1").addEventListener('click', addEntry, false);
 var event2 = document.getElementById("button2").addEventListener('click', generateWinner, false);
     
@@ -14,16 +12,15 @@ function addEntry() {
     outputString = "";
     
     if (nameCheck >= 0) {
-        
-        document.getElementById("result1").innerHTML = "Rejected, " + newName + " has already been entered into the competition.";
-        
+        document.getElementById("result1").innerHTML = "Rejected, " + newName + " has already been entered into the competition.";   
     }
-    else {
-        
-        entries.push(newName);
-        document.getElementById("result1").innerHTML = newName + " has been added to the competiton!";    
-        printArray();
-        
+    
+    else  {
+        if (newName != "") {
+            entries.push(newName);
+            document.getElementById("result1").innerHTML = newName + " has been added to the competiton!";    
+            printArray();
+        }    
     }
             
 }
@@ -48,7 +45,7 @@ function generateWinner() {
 function printArray() {
     
     for (i = 0; i < entries.length; i++) {
-        outputString += entries[i] + " ";       
+        outputString += entries[i] + " | ";       
     }
         
     document.getElementById("names").innerHTML = outputString;
