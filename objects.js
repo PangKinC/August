@@ -1,11 +1,11 @@
-/*var getName = { 
+var getName = { 
     firstname: "Kin", 
     surname: "Pang", 
     initials: "K.P",
     
     getFullName: function() { return this.firstname + " " + this.surname; }, 
     details: { nationality: "British", address: "29 Walpole Road" }      
-};*/
+}
 
 function Room (company, subject, student) {
     this.company = company;

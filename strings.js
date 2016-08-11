@@ -9,27 +9,38 @@ var event1 = document.getElementById("button1").addEventListener('click', button
 function buttonOutput() {
         
     //diffOutput();
-    //searchString();
+    searchString();
     //displayString();
     //addToString();
     //replaceString();
     //replaceLetter();
     //roundNumber();
-    roundDecimal();
+    //roundDecimal();
     
 }
 
 function roundDecimal() {
     
-    var getNum = parseFloat(document.getElementById("input1").value);
-    var getDecimal = parseInt(document.getElementById("input2").value);
+    var numInput = document.getElementById("input1").value;
+    var decInput = document.getElementById("input2").value;
+
+    if ((numInput != "") && (decInput != "")) {   
+        
+        var getNum = parseFloat(numInput);
+        var getDec = parseInt(decInput);
+        var newNum = Number(Math.round(getNum + 'e' + getDec) + 'e-' + getDec);
     
-    //var newNum = Number(Math.round(getNum).toFixed(getDecimal));
+        document.getElementById("result1").innerHTML = "The value: " + getNum + " rounded by " + getDec + " decimal places would equal: " + newNum + ".";
+          
+    }
     
-    // Solving decimal of 5 issue: http://www.jacklmoore.com/notes/rounding-in-javascript/
-    var newNum = Number(Math.round(getNum + 'e' + getDecimal) + 'e-' + getDecimal);
-    document.getElementById("result1").innerHTML = "The value: " + getNum + " rounded by " + getDecimal + " decimal places would equal: " + newNum + ".";
+    else if ((numInput != "") || (decInput != "")) {
+        document.getElementById("result1").innerHTML = "Please enter a value into both fields."
+    }
     
+    else {  
+        document.getElementById("result1").innerHTML = "Please enter some values."
+    }
     
 }
 
@@ -151,10 +162,11 @@ function cutString() {
         document.getElementById("error").innerHTML = "";
         var charIndex = stringChar.slice(numberInput -1, numberInput);
         var remainString = stringChar.slice(numberInput);
+        var joinedString = remainString.join("");
         
         document.getElementById("stringinput").innerHTML = stringInput;
         document.getElementById("numberinput").innerHTML = charIndex;
-        document.getElementById("leftover").innerHTML = remainString;
+        document.getElementById("leftover").innerHTML = joinedString;
             
     }
     
