@@ -169,6 +169,7 @@ function decreaseAllowance()
         document.getElementById("salarynet").innerHTML = "£" + salaryNet.toFixed(2);  
         document.getElementById("error").innerHTML = "";  
     }
+    
     else {
         document.getElementById("free").innerHTML = newAllowance.toFixed(2);
         document.getElementById("twenty").innerHTML = "£" + taxTwenty.toFixed(2); 
