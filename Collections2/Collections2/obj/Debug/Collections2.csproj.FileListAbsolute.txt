@@ -1,0 +1,6 @@
+C:\Users\Suijin\Documents\GitHub\August\Collections2\Collections2\bin\Debug\Collections2.exe.config
+C:\Users\Suijin\Documents\GitHub\August\Collections2\Collections2\bin\Debug\Collections2.exe
+C:\Users\Suijin\Documents\GitHub\August\Collections2\Collections2\bin\Debug\Collections2.pdb
+C:\Users\Suijin\Documents\GitHub\August\Collections2\Collections2\obj\Debug\Collections2.csprojResolveAssemblyReference.cache
+C:\Users\Suijin\Documents\GitHub\August\Collections2\Collections2\obj\Debug\Collections2.exe
+C:\Users\Suijin\Documents\GitHub\August\Collections2\Collections2\obj\Debug\Collections2.pdb

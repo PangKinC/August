@@ -1,0 +1,6 @@
+C:\Users\Suijin\Documents\GitHub\August\ErrorHandling\ErrorHandling\bin\Debug\ErrorHandling.exe.config
+C:\Users\Suijin\Documents\GitHub\August\ErrorHandling\ErrorHandling\bin\Debug\ErrorHandling.exe
+C:\Users\Suijin\Documents\GitHub\August\ErrorHandling\ErrorHandling\bin\Debug\ErrorHandling.pdb
+C:\Users\Suijin\Documents\GitHub\August\ErrorHandling\ErrorHandling\obj\Debug\ErrorHandling.csprojResolveAssemblyReference.cache
+C:\Users\Suijin\Documents\GitHub\August\ErrorHandling\ErrorHandling\obj\Debug\ErrorHandling.exe
+C:\Users\Suijin\Documents\GitHub\August\ErrorHandling\ErrorHandling\obj\Debug\ErrorHandling.pdb

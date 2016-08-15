@@ -4,3 +4,9 @@ C:\Users\student\Kin Pang\GitHub\August\Collections\Collections\bin\Debug\Collec
 C:\Users\student\Kin Pang\GitHub\August\Collections\Collections\obj\Debug\Collections.csprojResolveAssemblyReference.cache
 C:\Users\student\Kin Pang\GitHub\August\Collections\Collections\obj\Debug\Collections.exe
 C:\Users\student\Kin Pang\GitHub\August\Collections\Collections\obj\Debug\Collections.pdb
+C:\Users\Suijin\Documents\GitHub\August\Collections\Collections\bin\Debug\Collections.exe.config
+C:\Users\Suijin\Documents\GitHub\August\Collections\Collections\obj\Debug\Collections.exe
+C:\Users\Suijin\Documents\GitHub\August\Collections\Collections\obj\Debug\Collections.pdb
+C:\Users\Suijin\Documents\GitHub\August\Collections\Collections\bin\Debug\Collections.exe
+C:\Users\Suijin\Documents\GitHub\August\Collections\Collections\bin\Debug\Collections.pdb
+C:\Users\Suijin\Documents\GitHub\August\Collections\Collections\obj\Debug\Collections.csprojResolveAssemblyReference.cache
