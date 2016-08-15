@@ -1,3 +1,6 @@
+var score = 0;
+var outputString = "";
+
 var event1 = document.getElementById("button1").addEventListener('click', answerCheck, false);
 
 function Question(questionText, answerOne, answerTwo, answerThree, answerFour, correct) {
@@ -15,7 +18,7 @@ var questionThree = new Question('Which of these series is not a franchise belon
 var questionFour = new Question('Which of the following Final Fantasy did not launch on the Super Nintendo?', 'Final Fantasy III', 'Final Fantasy IV', 'Final Fantasy V', 'Final Fantasy VI', 1);
 var questionFive = new Question('Which of the following Legend of Zelda titles is on a handheld system?', 'Ocarina of Time', 'Twilight Princess', 'Minish Cap', 'Wind Waker', 3);
 
-questionList = []
+var questionList = [];
 
 questionList.push(questionOne);
 questionList.push(questionTwo);
@@ -38,27 +41,82 @@ for (var i = 0; i < questionList.length; i++) {
 
 function answerCheck() {
     
-    var matchArray = 0;
-    var score = 0;
-    var outputString = "";
+    outputString = "";
+    score = 0;
+
     
-    for (var i = 0; i < questionList.length; i++) {
+    var stringCheck = "";
+    var matchAnswer = 0;
+    
+    //var inputCheck = document.getElementById(inputTags.).value;
+    
+    //window.prompt("test");
+    
+    /*for (var i = 0; i < questionList.length; i++) {
         
-        matchArray = parseInt(document.getElementById(inputTags[i]).value);
+        matchAnswer = parseInt(document.getElementById(inputTags[i]).value);
         
-        if (matchArray === questionList[i].correct){
+        if ((matchAnswer === questionList[i].correct) && (matchAnswer != "")){
             outputString += "That was the correct answer to Question " + (i + 1) + ", congratulations!" + "</br>";
             score++;
         }
         
-        else {
+        else if (matchAnswer != "") {
             outputString +=  "Wrong answer to Question " + (i + 1) + ", please try again." + "</br>";
             document.getElementById(inputTags[i]).value = "";
         }
         
-        document.getElementById("result1").innerHTML = outputString;
-        document.getElementById("result2").innerHTML = "Score = " + score + " / " + questionList.length + ".";
+        scoreResult();
         
+    }*/
+    
+    
+
+    for (var i = 0; i < questionList.length; i++) {
+        
+        stringCheck = document.getElementById(inputTags[i]).value;
+        
+        if (stringCheck != "") {
+            
+            matchAnswer = parseInt(stringCheck);
+            
+            if ((matchAnswer === questionList[i].correct) && (score < questionList.length)) {
+                outputString += "That was the correct answer to Question " + (i + 1) + ", congratulations!" + "</br>";
+                score++;
+            }
+            else {
+                outputString +=  "Wrong answer to Question " + (i + 1) + ", please try again." + "</br>";
+                document.getElementById(inputTags[i]).value = "";     
+            }     
+            
+            scoreResult(); 
+        } 
+        else {
+            document.getElementById("result1").innerHTML = "Please enter a answer into all the fields";
+            document.getElementById("result2").innerHTML = "";
+            document.getElementById("result3").innerHTML = "";
+        } 
+           
     }
         
+}
+
+function scoreResult () {
+        
+    document.getElementById("result1").innerHTML = outputString + "<br/>";
+    document.getElementById("result2").innerHTML = "In total, you scored " + score + " out of " + questionList.length + ".";
+    
+    if (score === questionList.length) {
+        document.getElementById("result3").innerHTML = "You got all the questions right! What a pro!";
+    }
+    else if (score === 0) {
+        document.getElementById("result3").innerHTML = "Everything was incorrect! Brush up your knowledge and try again later.";
+    }        
+    else if (score >= Math.ceil(questionList.length / 2)) {
+        document.getElementById("result3").innerHTML = "That was close! You're nearly there!";
+    }
+    else {
+       document.getElementById("result3").innerHTML = "Not a bad attempt! Give it another shot!";
+    }
+    
 }

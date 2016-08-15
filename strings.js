@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 window.onload = function () {
 
   var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
@@ -35,6 +36,80 @@ window.onload = function () {
       check();
       myButtons.appendChild(letters);
       letters.appendChild(list);
+=======
+//document.getElementById("error").innerHTML = "";
+
+//var outputString = "";
+
+var event1 = document.getElementById("button1").addEventListener('click', buttonOutput, false);
+//var event1 = document.getElementById("button1").addEventListener('click', cutString, false);
+//var event2 = document.getElementById("button2").addEventListener('click', resetString, false );
+
+function buttonOutput() {
+        
+    //diffOutput();
+    searchString();
+    //displayString();
+    //addToString();
+    //replaceString();
+    //replaceLetter();
+    //roundNumber();
+    //roundDecimal();
+    
+}
+
+function roundDecimal() {
+    
+    var numInput = document.getElementById("input1").value;
+    var decInput = document.getElementById("input2").value;
+
+    if ((numInput != "") && (decInput != "")) {   
+        
+        var getNum = parseFloat(numInput);
+        var getDec = parseInt(decInput);
+        var newNum = Number(Math.round(getNum + 'e' + getDec) + 'e-' + getDec);
+    
+        document.getElementById("result1").innerHTML = "The value: " + getNum + " rounded by " + getDec + " decimal places would equal: " + newNum + ".";
+          
+    }
+    
+    else if ((numInput != "") || (decInput != "")) {
+        document.getElementById("result1").innerHTML = "Please enter a value into both fields."
+    }
+    
+    else {  
+        document.getElementById("result1").innerHTML = "Please enter some values."
+    }
+    
+}
+
+function roundNumber() {
+    
+    var getNum = parseFloat(document.getElementById("input1").value);
+    
+    var roundNum = Math.round(getNum);
+    var ceilNum = Math.ceil(getNum);
+    var floorNum = Math.floor(getNum);
+    
+    document.getElementById("result1").innerHTML = "The value: " + getNum + " rounded to the nearest integer would equal: " + roundNum + ".";
+    document.getElementById("result2").innerHTML = "The value: " + getNum + " rounded up to the nearest integer would equal: " + ceilNum + ".";
+    document.getElementById("result3").innerHTML = "The value: " + getNum + " rounded down to the nearest integer would equal: " + floorNum + ".";
+    
+}
+
+function replaceLetter() {
+    
+    var getString = document.getElementById("input1").value;
+    var getChar = document.getElementById("input2").value;
+    var newChar = document.getElementById("input3").value;
+    
+    var stringArray = getString.split("");
+    
+    for (i = 0; i < stringArray.length; i++) {
+        if ((stringArray[i] === getChar) && (getString != "")){
+             stringArray[i] = newChar;
+        }         
+>>>>>>> origin/master
     }
   }
     
@@ -117,6 +192,7 @@ window.onload = function () {
     context.stroke(); 
 }
 
+<<<<<<< HEAD
    frame1 = function() {
      draw (0, 150, 150, 150);
    };
@@ -176,6 +252,32 @@ window.onload = function () {
       } else {
         comments();
       }
+=======
+function cutString() {
+    
+    var stringInput = document.getElementById("input1").value;
+    var numberInput = parseInt(document.getElementById("input2").value);
+    
+    var stringChar = stringInput.split("");
+    
+    if ((numberInput >= 0) && (numberInput <= stringChar.length)) {
+    
+        document.getElementById("error").innerHTML = "";
+        var charIndex = stringChar.slice(numberInput -1, numberInput);
+        var remainString = stringChar.slice(numberInput);
+        var joinedString = remainString.join("");
+        
+        document.getElementById("stringinput").innerHTML = stringInput;
+        document.getElementById("numberinput").innerHTML = charIndex;
+        document.getElementById("leftover").innerHTML = joinedString;
+            
+    }
+    
+    else {
+        
+        document.getElementById("error").innerHTML = "There is no character at that specified position, try again.";
+        
+>>>>>>> origin/master
     }
   }
   
