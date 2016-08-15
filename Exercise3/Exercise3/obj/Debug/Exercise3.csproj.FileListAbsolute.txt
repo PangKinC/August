@@ -1,0 +1,5 @@
+C:\Users\student\Kin Pang\GitHub\August\Exercise3\Exercise3\bin\Debug\Exercise3.exe.config
+C:\Users\student\Kin Pang\GitHub\August\Exercise3\Exercise3\bin\Debug\Exercise3.exe
+C:\Users\student\Kin Pang\GitHub\August\Exercise3\Exercise3\bin\Debug\Exercise3.pdb
+C:\Users\student\Kin Pang\GitHub\August\Exercise3\Exercise3\obj\Debug\Exercise3.exe
+C:\Users\student\Kin Pang\GitHub\August\Exercise3\Exercise3\obj\Debug\Exercise3.pdb
