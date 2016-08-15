@@ -1,177 +1,234 @@
-//document.getElementById("error").innerHTML = "";
+window.onload = function () {
 
-//var outputString = "";
+  var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+        't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  
+  var categories;         // Array of topics
+  var chosenCategory;     // Selected catagory
+  var getHint ;          // Word getHint
+  var word ;              // Selected word
+  var guess ;             // Geuss
+  var geusses = [ ];      // Stored geusses
+  var lives ;             // Lives
+  var counter ;           // Count correct geusses
+  var space;              // Number of spaces in word '-'
 
-var event1 = document.getElementById("button1").addEventListener('click', buttonOutput, false);
-//var event1 = document.getElementById("button1").addEventListener('click', cutString, false);
-//var event2 = document.getElementById("button2").addEventListener('click', resetString, false );
+  // Get elements
+  var showLives = document.getElementById("mylives");
+  var showCatagory = document.getElementById("scatagory");
+  var getHint = document.getElementById("hint");
+  var showClue = document.getElementById("clue");
 
-function buttonOutput() {
-        
-    //diffOutput();
-    //searchString();
-    //displayString();
-    //addToString();
-    //replaceString();
-    //replaceLetter();
-    //roundNumber();
-    roundDecimal();
-    
-}
 
-function roundDecimal() {
-    
-    var getNum = parseFloat(document.getElementById("input1").value);
-    var getDecimal = parseInt(document.getElementById("input2").value);
-    
-    //var newNum = Number(Math.round(getNum).toFixed(getDecimal));
-    
-    // Solving decimal of 5 issue: http://www.jacklmoore.com/notes/rounding-in-javascript/
-    var newNum = Number(Math.round(getNum + 'e' + getDecimal) + 'e-' + getDecimal);
-    document.getElementById("result1").innerHTML = "The value: " + getNum + " rounded by " + getDecimal + " decimal places would equal: " + newNum + ".";
-    
-    
-}
 
-function roundNumber() {
-    
-    var getNum = parseFloat(document.getElementById("input1").value);
-    
-    var roundNum = Math.round(getNum);
-    var ceilNum = Math.ceil(getNum);
-    var floorNum = Math.floor(getNum);
-    
-    document.getElementById("result1").innerHTML = "The value: " + getNum + " rounded to the nearest integer would equal: " + roundNum + ".";
-    document.getElementById("result2").innerHTML = "The value: " + getNum + " rounded up to the nearest integer would equal: " + ceilNum + ".";
-    document.getElementById("result3").innerHTML = "The value: " + getNum + " rounded down to the nearest integer would equal: " + floorNum + ".";
-    
-}
+  // create alphabet ul
+  var buttons = function () {
+    myButtons = document.getElementById('buttons');
+    letters = document.createElement('ul');
 
-function replaceLetter() {
+    for (var i = 0; i < alphabet.length; i++) {
+      letters.id = 'alphabet';
+      list = document.createElement('li');
+      list.id = 'letter';
+      list.innerHTML = alphabet[i];
+      check();
+      myButtons.appendChild(letters);
+      letters.appendChild(list);
+    }
+  }
     
-    var getString = document.getElementById("input1").value;
-    var getChar = document.getElementById("input2").value;
-    var newChar = document.getElementById("input3").value;
-    
-    var stringArray = getString.split("");
-    
-    for (i = 0; i < stringArray.length; i++) {
-        if ((stringArray[i] === getChar) && (getString != "")){
-             stringArray[i] = newChar;
-        }         
+  
+  // Select Catagory
+  var selectCat = function () {
+    if (chosenCategory === categories[0]) {
+      catagoryName.innerHTML = "The Chosen Category Is Premier League Football Teams";
+    } else if (chosenCategory === categories[1]) {
+      catagoryName.innerHTML = "The Chosen Category Is Films";
+    } else if (chosenCategory === categories[2]) {
+      catagoryName.innerHTML = "The Chosen Category Is Cities";
+    }
+  }
+
+  // Create geusses ul
+   result = function () {
+    wordHolder = document.getElementById('hold');
+    correct = document.createElement('ul');
+
+    for (var i = 0; i < word.length; i++) {
+      correct.setAttribute('id', 'my-word');
+      guess = document.createElement('li');
+      guess.setAttribute('class', 'guess');
+      if (word[i] === "-") {
+        guess.innerHTML = "-";
+        space = 1;
+      } else {
+        guess.innerHTML = "_";
+      }
+
+      geusses.push(guess);
+      wordHolder.appendChild(correct);
+      correct.appendChild(guess);
+    }
+  }
+  
+  // Show lives
+   comments = function () {
+    showLives.innerHTML = "You have " + lives + " lives";
+    if (lives < 1) {
+      showLives.innerHTML = "Game Over";
+    }
+    for (var i = 0; i < geusses.length; i++) {
+      if (counter + space === geusses.length) {
+        showLives.innerHTML = "You Win!";
+      }
+    }
+  }
+
+      // Animate man
+  var animate = function () {
+    var drawMe = lives ;
+    drawArray[drawMe]();
+  }
+
+  
+   // Hangman
+  canvas =  function(){
+
+    myStickman = document.getElementById("stickman");
+    context = myStickman.getContext('2d');
+    context.beginPath();
+    context.strokeStyle = "#fff";
+    context.lineWidth = 2;
+  };
+  
+    head = function(){
+      myStickman = document.getElementById("stickman");
+      context = myStickman.getContext('2d');
+      context.beginPath();
+      context.arc(60, 25, 10, 0, Math.PI*2, true);
+      context.stroke();
     }
     
-    var displayString = stringArray.join("");
-    document.getElementById("result1").innerHTML = "String has been changed, it is now: " 
-    document.getElementById("result2").innerHTML = displayString + ".";
- 
+  draw = function($pathFromx, $pathFromy, $pathTox, $pathToy) {
+    
+    context.moveTo($pathFromx, $pathFromy);
+    context.lineTo($pathTox, $pathToy);
+    context.stroke(); 
 }
 
-function replaceString() {
-    
-    var getString = document.getElementById("input1").value;
-    var replaceString = document.getElementById("input2").value;
-    var newString = document.getElementById("input3").value;
-    
-    var displayString = getString.replace(replaceString, newString);
-    document.getElementById("result1").innerHTML = "String has been changed, it is now: " 
-    document.getElementById("result2").innerHTML = displayString + ".";
+   frame1 = function() {
+     draw (0, 150, 150, 150);
+   };
+   
+   frame2 = function() {
+     draw (10, 0, 10, 600);
+   };
+  
+   frame3 = function() {
+     draw (0, 5, 70, 5);
+   };
+  
+   frame4 = function() {
+     draw (60, 5, 60, 15);
+   };
+  
+   torso = function() {
+     draw (60, 36, 60, 70);
+   };
+  
+   rightArm = function() {
+     draw (60, 46, 100, 50);
+   };
+  
+   leftArm = function() {
+     draw (60, 46, 20, 50);
+   };
+  
+   rightLeg = function() {
+     draw (60, 70, 100, 100);
+   };
+  
+   leftLeg = function() {
+     draw (60, 70, 20, 100);
+   };
+  
+  drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3, frame2, frame1]; 
 
-}
 
-function addToString() {
-    
-    var getString = document.getElementById("input1").value;
-    var getChar = document.getElementById("input2").value;
-    var getPos = parseInt(document.getElementById("input3").value);
-    
-    var stringArray = getString.split("");
-    stringArray[getPos - 1] = getChar;
-    
-    var rejoinedString = stringArray.join("");
-    document.getElementById("result1").innerHTML = "Your string is now: " + rejoinedString + ".";
-    
-}
-
-function displayString() {
-
-    var getString = document.getElementById("input1").value;
-    
-    for (i = 0; i < getString.length; i++){
-        outputString += getString.charAt(i) + "<br/>";   
+  // OnClick Function
+   check = function () {
+    list.onclick = function () {
+      var geuss = (this.innerHTML);
+      this.setAttribute("class", "active");
+      this.onclick = null;
+      for (var i = 0; i < word.length; i++) {
+        if (word[i] === geuss) {
+          geusses[i].innerHTML = geuss;
+          counter += 1;
+        } 
+      }
+      var j = (word.indexOf(geuss));
+      if (j === -1) {
+        lives -= 1;
+        comments();
+        animate();
+      } else {
+        comments();
+      }
     }
+  }
+  
     
-    document.getElementById("stringoutput").innerHTML = outputString;
+  // Play
+  play = function () {
+    categories = [
+        ["everton", "liverpool", "swansea", "chelsea", "hull", "manchester-city", "newcastle-united"],
+        ["alien", "dirty-harry", "gladiator", "finding-nemo", "jaws"],
+        ["manchester", "milan", "madrid", "amsterdam", "prague"]
+    ];
 
+    chosenCategory = categories[Math.floor(Math.random() * categories.length)];
+    word = chosenCategory[Math.floor(Math.random() * chosenCategory.length)];
+    word = word.replace(/\s/g, "-");
+    console.log(word);
+    buttons();
+
+    geusses = [ ];
+    lives = 10;
+    counter = 0;
+    space = 0;
+    result();
+    comments();
+    selectCat();
+    canvas();
+  }
+
+  play();
+  
+  // Hint
+
+    hint.onclick = function() {
+
+      hints = [
+        ["Based in Mersyside", "Based in Mersyside", "First Welsh team to reach the Premier Leauge", "Owned by A russian Billionaire", "Once managed by Phil Brown", "2013 FA Cup runners up", "Gazza's first club"],
+        ["Science-Fiction horror film", "1971 American action film", "Historical drama", "Anamated Fish", "Giant great white shark"],
+        ["Northern city in the UK", "Home of AC and Inter", "Spanish capital", "Netherlands capital", "Czech Republic capital"]
+    ];
+
+    var catagoryIndex = categories.indexOf(chosenCategory);
+    var hintIndex = chosenCategory.indexOf(word);
+    showClue.innerHTML = "Clue: - " +  hints [catagoryIndex][hintIndex];
+  };
+
+   // Reset
+
+  document.getElementById('reset').onclick = function() {
+    correct.parentNode.removeChild(correct);
+    letters.parentNode.removeChild(letters);
+    showClue.innerHTML = "";
+    context.clearRect(0, 0, 400, 400);
+    play();
+  }
 }
 
-function searchString() {
-    
-    var getSentence = document.getElementById("input1").value;
-    var getString = document.getElementById("input2").value;
-    
-    var sentenceArray = getSentence.split();
-    var stringArray = getString.split();
-    
-    var index = 0;
-    
-    //index = getSentence.indexOf(getString);
-    index = getSentence.lastIndexOf(getString);
-    
-    if ((index >= 0) && (getString != "")){
-        //document.getElementById("result1").innerHTML = getString + " found in the sentence, is at position: " + (index + 1) + ".";
-        document.getElementById("result1").innerHTML = "Last occurence of " + getString + " found in the sentence at position: " + (index + 1) + ".";
-    }
-    else {
-        if (getString != "") {
-            document.getElementById("result1").innerHTML = getString + " was not found in the sentence.";
-        }
-    }
-    
-}
-
-function diffOutput() {
-    
-    var getInput = document.getElementById("input1").value;
-    document.getElementById("input2").value = getInput;
-    document.getElementById("input3").value = getInput.toUpperCase();
-    document.getElementById("input4").value = getInput.toLowerCase();
-        
-}
-
-function cutString() {
-    
-    var stringInput = document.getElementById("input1").value;
-    var numberInput = parseInt(document.getElementById("input2").value);
-    
-    var stringChar = stringInput.split("");
-    
-    if ((numberInput >= 0) && (numberInput <= stringChar.length)) {
-    
-        document.getElementById("error").innerHTML = "";
-        var charIndex = stringChar.slice(numberInput -1, numberInput);
-        var remainString = stringChar.slice(numberInput);
-        
-        document.getElementById("stringinput").innerHTML = stringInput;
-        document.getElementById("numberinput").innerHTML = charIndex;
-        document.getElementById("leftover").innerHTML = remainString;
-            
-    }
-    
-    else {
-        
-        document.getElementById("error").innerHTML = "There is no character at that specified position, try again.";
-        
-    }
-    
-}
-
-function resetString() {
-    
-    document.getElementById("input1").value = "";
-    document.getElementById("input2").value = "";
-    document.getElementById("stringinput").innerHTML = "";
-    document.getElementById("numberinput").innerHTML = "";
-    document.getElementById("leftover").innerHTML = "";
-    
-}
