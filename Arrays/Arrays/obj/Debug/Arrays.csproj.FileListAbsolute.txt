@@ -3,3 +3,9 @@ C:\Users\student\Kin Pang\GitHub\August\Arrays\Arrays\bin\Debug\Arrays.exe
 C:\Users\student\Kin Pang\GitHub\August\Arrays\Arrays\bin\Debug\Arrays.pdb
 C:\Users\student\Kin Pang\GitHub\August\Arrays\Arrays\obj\Debug\Arrays.exe
 C:\Users\student\Kin Pang\GitHub\August\Arrays\Arrays\obj\Debug\Arrays.pdb
+C:\Users\Suijin\Documents\GitHub\August\Arrays\Arrays\bin\Debug\Arrays.exe.config
+C:\Users\Suijin\Documents\GitHub\August\Arrays\Arrays\obj\Debug\Arrays.exe
+C:\Users\Suijin\Documents\GitHub\August\Arrays\Arrays\obj\Debug\Arrays.pdb
+C:\Users\Suijin\Documents\GitHub\August\Arrays\Arrays\bin\Debug\Arrays.exe
+C:\Users\Suijin\Documents\GitHub\August\Arrays\Arrays\bin\Debug\Arrays.pdb
+C:\Users\Suijin\Documents\GitHub\August\Arrays\Arrays\obj\Debug\Arrays.csprojResolveAssemblyReference.cache
