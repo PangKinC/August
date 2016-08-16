@@ -21,7 +21,7 @@ namespace Arrays
             Console.WriteLine("\n");
             Console.WriteLine("Doing calculations ...");
             Console.WriteLine("Average of numbers inputted is: " + (num[0] + num[1] + num[2] + num[3] + num[4]) / num.Length + ".");
-            Console.WriteLine("\n");(*/
+            Console.WriteLine("\n");*/
 
             int[,] num = new int[5, 5] {
                 { 1, 2, 3, 4, 5 },
@@ -35,12 +35,9 @@ namespace Arrays
             int columnSum = 0;
             int totalSum = 0;
 
-            for (int i = 0; i < num.GetLength(0); i++)
-            {
+            for (int i = 0; i < num.GetLength(0); i++) {
                 rowSum = 0;
-
-                for (int j = 0; j < num.GetLength(1); j++)
-                {
+                for (int j = 0; j < num.GetLength(1); j++) {
                     rowSum += num[i, j];
                 }
 
@@ -49,32 +46,29 @@ namespace Arrays
 
             Console.WriteLine("\n");
 
-            for (int i = 0; i < num.GetLength(0); i++)
-            {
-                columnSum = 0;
-               
-                for (int j = 0; j < num.GetLength(1); j++)
-                {
+            for (int i = 0; i < num.GetLength(0); i++) {
+                columnSum = 0;    
+                for (int j = 0; j < num.GetLength(1); j++) {
                     columnSum += num[j, i];
                 }
 
                 Console.Write(columnSum + " ");
-
             }
 
             Console.WriteLine("\n");
 
-            for (int i = 0; i < num.GetLength(0); i++)
-            {
-                for (int j = 0; j < num.GetLength(1); j++)
-                {
-                    totalSum += num[i, j];
+            for (int i = 0; i < num.GetLength(0); i++) {
+                //totalSum = 0;
+                for (int j = 0; j < num.GetLength(1); j++) {
+                    totalSum = 0;
+                    rowSum += num[i, i];
+                    columnSum += num[j, j];
+                    totalSum = num[i, j] + num[j, i];
                 }
-
             }
-
+            
             Console.WriteLine(totalSum + "\n");
-   
+
         }
     }
 }

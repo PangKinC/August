@@ -4,3 +4,9 @@ C:\Users\Suijin\Documents\GitHub\August\SimpleCalculator\SimpleCalculator\bin\De
 C:\Users\Suijin\Documents\GitHub\August\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.pdb
 C:\Users\Suijin\Documents\GitHub\August\SimpleCalculator\SimpleCalculator\obj\Debug\SimpleCalculator.exe
 C:\Users\Suijin\Documents\GitHub\August\SimpleCalculator\SimpleCalculator\obj\Debug\SimpleCalculator.pdb
+C:\Users\student\Kin Pang\GitHub\August\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.exe.config
+C:\Users\student\Kin Pang\GitHub\August\SimpleCalculator\SimpleCalculator\obj\Debug\SimpleCalculator.exe
+C:\Users\student\Kin Pang\GitHub\August\SimpleCalculator\SimpleCalculator\obj\Debug\SimpleCalculator.pdb
+C:\Users\student\Kin Pang\GitHub\August\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.exe
+C:\Users\student\Kin Pang\GitHub\August\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.pdb
+C:\Users\student\Kin Pang\GitHub\August\SimpleCalculator\SimpleCalculator\obj\Debug\SimpleCalculator.csprojResolveAssemblyReference.cache

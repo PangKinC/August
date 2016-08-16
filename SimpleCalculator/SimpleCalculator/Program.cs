@@ -169,7 +169,7 @@ namespace SimpleCalculator
 
                 // At this point, program confirms whether user wants to exit or continues looping.
                 Console.WriteLine("\n" + "Do you want to exit? If yes, press E.");
-                Console.WriteLine("Otherwise, press any other key.");
+                Console.WriteLine("Otherwise, press any other key." + "\n");
 
                 // Takes user input
                 exitCheck = Console.ReadLine().ToLower();

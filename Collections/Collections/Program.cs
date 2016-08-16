@@ -15,8 +15,8 @@ namespace Collections
             Console.WriteLine("S = Search Book");
             Console.WriteLine("L = List Books");
             Console.WriteLine("O = Sort Books");
-            Console.WriteLine("E = Exit Program");
-
+            Console.WriteLine("E = Exit Program" + "\n");
+       
             string userInput;
             string bookInput;
             List<string> book = new List<string>();
@@ -30,18 +30,18 @@ namespace Collections
             do
             {
                 userInput = Console.ReadLine().ToLower();
-
+               
                 switch (userInput)
                 {
                     case "a":
-                        Console.WriteLine("Please type in the title of the book.");
+                        Console.WriteLine("\n" + "Please type in the title of the book." + "\n");
                         bookInput = Console.ReadLine();
                         book.Add(bookInput);
-                        Console.WriteLine("The book: " + bookInput + " has been added!");
+                        Console.WriteLine("\n" + "The book: " + bookInput + " has been added!");
                         break;
 
                     case "l":
-                        Console.WriteLine("Here are your list of books: ");
+                        Console.WriteLine("\n" + "Here are your list of books: ");
                         foreach (string s in book)
                         {
                             Console.WriteLine(s);
@@ -50,16 +50,16 @@ namespace Collections
                         break;
 
                     case "d":
-                        Console.WriteLine("Type in the name of the book you want to delete.");
+                        Console.WriteLine("\n" + "Type in the name of the book you want to delete.");
                         bookInput = Console.ReadLine();
                         book.Remove(bookInput);
-                        Console.WriteLine(bookInput + " was deleted from you list of books");
-                        break;
+                        Console.WriteLine("\n" + bookInput + " was deleted from you list of books");
+                        break;  
 
                     case "o":
-                        Console.WriteLine("Sorting the books...");
+                        Console.WriteLine("\n" + "Sorting the books...");
                         book.Sort();
-                        Console.WriteLine("Your order of books is now:");
+                        Console.WriteLine("\n" + "Your order of books is now: " + "\n");
                         foreach (string s in book)
                         {
                             Console.WriteLine(s);
@@ -67,16 +67,15 @@ namespace Collections
                         break;
 
                     case "s":
-                        Console.WriteLine("Type in the name of the book you want to search");
+                        Console.WriteLine("\n" + "Type in the name of the book you want to search" + "\n");
                         bookInput = Console.ReadLine();
-
-                        foreach (string s in book)
-                        {
-                            if (s.Contains(bookInput))
-                            {
-                                Console.WriteLine("Book: " + bookInput + " was found in the list of books!");
-                            }
+ 
+                        if (book.FindIndex(x => x.Equals(bookInput, StringComparison.OrdinalIgnoreCase)) != -1) {
+                            Console.WriteLine("\n" + "Book: " + bookInput + " was found in the list of books!");
                         }
+                         
+                        else { Console.WriteLine(bookInput + " was not found inside the list of books!"); }
+
                         break;
 
                     case "e":
@@ -88,7 +87,7 @@ namespace Collections
                         break;
                 }
 
-                Console.WriteLine("Please enter another command: A, D, S, L, O or E");    
+                Console.WriteLine("\n" + "Please enter another command: A, D, S, L, O or E" + "\n");    
 
             } while (exit == false);
   

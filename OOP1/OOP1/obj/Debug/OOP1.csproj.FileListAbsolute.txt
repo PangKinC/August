@@ -1,0 +1,6 @@
+C:\Users\student\Kin Pang\GitHub\August\OOP1\OOP1\bin\Debug\OOP1.exe.config
+C:\Users\student\Kin Pang\GitHub\August\OOP1\OOP1\bin\Debug\OOP1.exe
+C:\Users\student\Kin Pang\GitHub\August\OOP1\OOP1\bin\Debug\OOP1.pdb
+C:\Users\student\Kin Pang\GitHub\August\OOP1\OOP1\obj\Debug\OOP1.csprojResolveAssemblyReference.cache
+C:\Users\student\Kin Pang\GitHub\August\OOP1\OOP1\obj\Debug\OOP1.exe
+C:\Users\student\Kin Pang\GitHub\August\OOP1\OOP1\obj\Debug\OOP1.pdb
