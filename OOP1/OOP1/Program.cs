@@ -8,29 +8,52 @@ namespace OOP1
 {
     class Car
     {
-        public string makeModel;
+        public string make;
+        public string model;
         public int price;
-        public int soldPrice;
+        public int sellPrice;
         public int mileage;
+        public bool isNew;
         public bool sold;
-
-        //List<Car> cars = new List<Car>;
-      
+        
         public static int carTotal;
         public static int carSold;
+        public static int usedCars;
 
-        public void AddCar(string makeModel, int price)
+        public Car(string make, string model, int price)
         {
-            this.makeModel = makeModel;
+            this.make = make;
+            this.model = model;
             this.price = price;
+
+            this.isNew = true;
             this.sold = false;
             Car.carTotal++;
         }
 
-        public void SellCar(bool sold, int soldPrice)
+        public Car(string make, string model, int price, int mileage)
+        {
+            this.make = make;
+            this.model = model;
+            this.price = price;
+            this.mileage = mileage;
+
+            this.isNew = false;
+            this.sold = false;
+            Car.usedCars++;
+            Car.carTotal++;
+        }
+
+        public void SellCar(bool sold, int sellPrice)
         {
             this.sold = sold;
-            this.soldPrice = soldPrice;
+
+            if (isNew == false)
+            {
+                Car.usedCars--;
+            }
+
+            this.sellPrice = sellPrice;
             Car.carSold++;
             Car.carTotal--;
         }
@@ -38,11 +61,11 @@ namespace OOP1
         public void ListCar()
         {
             Console.WriteLine("\n" + "The details of the car is: ");
-            Console.WriteLine("Make and model: {0}, price being: £{1:N0}, with mileage: {2}", makeModel, price, mileage);
+            Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00, Mileage: {3}.", make, model, price, mileage);
 
             if (sold == true)
             {
-                Console.WriteLine("This car has been sold, for a total of: £{0:N0}.", soldPrice);
+                Console.WriteLine("This car has been sold, for a total of: £{0:N0}.00.", sellPrice);
             }
             else
             {
@@ -50,27 +73,50 @@ namespace OOP1
             }
         }
 
-        public static void DisplayAllCars(List<Car> cars)
+        public static void TotalSales(List<Car> cars)
         {
-            int totalSales;
-            int totalStock;
+            int totalSales = 0;
+            int totalStock = 0;
 
             foreach (Car car in cars)
             {
-                //Console.WriteLine("\n" + "The details of the car is: ");
-                //Console.WriteLine("Make and model: {0}, price being: £{1:N0}, with mileage: {2}", makeModel, price, mileage);
+                if (car.isNew == false) {
+                    Console.WriteLine("\n" + "The details of the car is: ");
+                    Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00, Mileage: {3}.", car.make, car.model, car.price, car.mileage);
+                }
+                else {
+                    Console.WriteLine("\n" + "The details of the car is: ");
+                    Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00.", car.make, car.model, car.price);
+                }
+
+                if (car.sold == true) {
+                    Console.WriteLine("This car has been sold, for a total of: £{0:N0}.00.", car.sellPrice);
+                    totalSales += car.sellPrice;
+                }
+                else {
+                    Console.WriteLine("This car has not been sold yet.");
+                    totalStock += car.price;
+                }
             }
+
+            if (Car.carTotal == 0){
+                Console.WriteLine("\n" + "We have sold all our available cars!");
+            }
+            else {
+                Console.WriteLine("\n" + "Total number of car in stock right now: " + Car.carTotal);
+            }
+
+            if (Car.usedCars == 0) {
+                Console.WriteLine("\n" + "We currently have no second-hand cars stocked.");
+            }
+            else {
+                Console.WriteLine("\n" + "The total number of second-hand cars currently stocked is: {0}", Car.usedCars);
+            }
+
+            Console.WriteLine("\n" + "The total number of cars sold so far is: {0}", Car.carSold);
+            Console.WriteLine("\n" + "The total value of all the cars sold so far equals: £{0:N0}.00", totalSales);
+            Console.WriteLine("\n" + "The value of all our currently stocked cars equals: £{0:N0}.00" + "\n", totalStock);
         }
-
-
-        /*public static int TotalSales()
-        {
-            this.cars
-            foreach (Car c in cars)
-            {
-
-            }
-        }*/
     }
 
 
@@ -78,44 +124,31 @@ namespace OOP1
     {
         static void Main(string[] args)
         {
-            Car carOne = new Car();
-            Car.carTotal++;
-            carOne.makeModel = "Mazda / Mazda3";
-            carOne.price = 6000;
-            carOne.sold = false;
-            carOne.mileage = 60000;
-            
-            Car carTwo = new Car();
-            Car.carTotal++;
-            carTwo.makeModel = "Honda / Civic";
-            carTwo.price = 5500;
-            carTwo.mileage = 65000;
 
-            Car carThree = new Car();
-            Car.carTotal++;
-            carThree.makeModel = "BMW / 3 Series";      
-            carThree.price = 10000;
-            carThree.sold = false;
+            List<Car> cars = new List<Car>();
 
-            Car carFour = new Car();
-            carFour.AddCar("Ford / Fiesta", 8000);
-        
-            Car carFive = new Car();
-            carFive.AddCar("Volkswagen / Polo", 9000);
-            carFive.mileage = 50000;
+            Car carOne = new Car("Mazda", "Mazda3", 6000, 60000);
+            cars.Add(carOne);
 
+            Car carTwo = new Car("Honda", "Civic", 5500, 65000);
+            cars.Add(carTwo);
+
+            Car carThree = new Car("BMW", "3 Series", 10000);
+            cars.Add(carThree);
+
+            Car carFour = new Car("Ford", "Fiesta", 8000);
+            cars.Add(carFour);
+
+            Car carFive = new Car("Volkswagen", "Polo", 9000, 50000);       
+            cars.Add(carFive);
+
+            carOne.SellCar(true, 7000);
             carTwo.SellCar(true, 6500);
+            carThree.SellCar(true, 9500);
             carFour.SellCar(true, 10000);
             carFive.SellCar(true, 9500);
 
-            carOne.ListCar();
-            carTwo.ListCar();
-            carThree.ListCar();
-            carFour.ListCar();
-            carFive.ListCar();
-
-            Console.WriteLine("Total number of car in stock right now: " + Car.carTotal);
-            Console.WriteLine("\n" + "The total number of cars sold so far is {0}.", Car.carSold);
+            Car.TotalSales(cars);
 
         }
     }
