@@ -1,0 +1,6 @@
+C:\Users\Suijin\Documents\GitHub\August\OOP2\OOP2\bin\Debug\OOP2.exe.config
+C:\Users\Suijin\Documents\GitHub\August\OOP2\OOP2\bin\Debug\OOP2.exe
+C:\Users\Suijin\Documents\GitHub\August\OOP2\OOP2\bin\Debug\OOP2.pdb
+C:\Users\Suijin\Documents\GitHub\August\OOP2\OOP2\obj\Debug\OOP2.csprojResolveAssemblyReference.cache
+C:\Users\Suijin\Documents\GitHub\August\OOP2\OOP2\obj\Debug\OOP2.exe
+C:\Users\Suijin\Documents\GitHub\August\OOP2\OOP2\obj\Debug\OOP2.pdb
