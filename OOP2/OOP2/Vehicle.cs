@@ -45,29 +45,17 @@ namespace OOP2
 
         public void SellVehicle(string type, bool sold, int sellPrice)
         {
-            if (type == "car")
-            {
+            if (type == "car") {
                 this.sold = sold;
-
-                if (isNew == false)
-                {
-                    Car.usedCars--;
-                }
-
+                if (isNew == false) { Car.usedCars--; }
                 this.sellPrice = sellPrice;
                 Car.carSold++;
                 Car.carTotal--;
-            } 
+            }
 
-            if (type == "motorcycle")
-            {
+            else if (type == "motorcycle") {
                 this.sold = sold;
-
-                if (isNew == false)
-                {
-                    Motorcycle.usedCycles--;
-                }
-
+                if (isNew == false) { Motorcycle.usedCycles--; }
                 this.sellPrice = sellPrice;
                 Motorcycle.cycleSold++;
                 Motorcycle.cycleTotal--;

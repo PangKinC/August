@@ -4,3 +4,9 @@ C:\Users\student\Kin Pang\GitHub\August\Encapsulation\Encapsulation\bin\Debug\En
 C:\Users\student\Kin Pang\GitHub\August\Encapsulation\Encapsulation\obj\Debug\Encapsulation.csprojResolveAssemblyReference.cache
 C:\Users\student\Kin Pang\GitHub\August\Encapsulation\Encapsulation\obj\Debug\Encapsulation.exe
 C:\Users\student\Kin Pang\GitHub\August\Encapsulation\Encapsulation\obj\Debug\Encapsulation.pdb
+C:\Users\Suijin\Documents\GitHub\August\Encapsulation\Encapsulation\bin\Debug\Encapsulation.exe.config
+C:\Users\Suijin\Documents\GitHub\August\Encapsulation\Encapsulation\obj\Debug\Encapsulation.exe
+C:\Users\Suijin\Documents\GitHub\August\Encapsulation\Encapsulation\obj\Debug\Encapsulation.pdb
+C:\Users\Suijin\Documents\GitHub\August\Encapsulation\Encapsulation\bin\Debug\Encapsulation.exe
+C:\Users\Suijin\Documents\GitHub\August\Encapsulation\Encapsulation\bin\Debug\Encapsulation.pdb
+C:\Users\Suijin\Documents\GitHub\August\Encapsulation\Encapsulation\obj\Debug\Encapsulation.csprojResolveAssemblyReference.cache

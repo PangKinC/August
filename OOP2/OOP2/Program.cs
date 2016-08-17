@@ -16,6 +16,7 @@ namespace OOP2
             string addMake;
             string addModel;
             int addPrice = 0;
+            string typeInput;
 
             List<Vehicle> vehicle = new List<Vehicle>();
 
@@ -94,11 +95,11 @@ namespace OOP2
 
                     case "s":
                         Console.WriteLine("\n" + "Sell Vehicle option was selected, do you want to sell a Car or Motorcycle?");
-                        userInput = Console.ReadLine().ToLower();
+                        typeInput = Console.ReadLine().ToLower();
 
-                        if (userInput == "car" || userInput == "motorcycle")
+                        if (typeInput == "car" || typeInput == "motorcycle")
                         {
-                            Console.WriteLine("\n" + "What is the model of the {0} you wish to sell?", userInput);
+                            Console.WriteLine("\n" + "What is the model of the {0} you wish to sell?", typeInput);
                             userInput = Console.ReadLine();
 
                             int index = vehicle.FindIndex(v => v.model == userInput);
@@ -109,12 +110,19 @@ namespace OOP2
                                 userInput = Console.ReadLine();
                                 addPrice = Convert.ToInt32(userInput);
 
-                                Console.WriteLine("\n" + "Price accepted, selling the car now ...");
+                                Console.WriteLine("\n" + "Price accepted, confirming the car sale now ...");
                                 Vehicle foundVehicle = new Vehicle("","", 0);
                                 foundVehicle = vehicle[index];
-                                foundVehicle.SellVehicle("car", true, addPrice);
 
-                                //Console.WriteLine("\n{0} has been sold for £{1:N0}.00!", v.02.model, addPrice);
+                                if (foundVehicle.sold == true) {
+                                    Console.WriteLine("\n" + "Request denied, this vehicle has already been sold!");
+                                }
+
+                                else {
+                                    Console.WriteLine("\n{0} has been sold for £{1:N0}.00!", foundVehicle.model, addPrice);
+                                    foundVehicle.SellVehicle(typeInput, true, addPrice);
+                                }
+                                
                             }
 
                             else
