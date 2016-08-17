@@ -16,6 +16,9 @@ namespace OOP2
         public int mileage;
         public int wheels;
 
+        public static int totalSales;
+        public static int totalStock;
+
         public bool isNew;
         public bool sold;
 
@@ -71,16 +74,15 @@ namespace OOP2
             }
 
         }
-        public static void TotalSales(List<Vehicle> vehicle)
-        {
-            int totalSales = 0;
-            int totalStock = 0;
 
+        public static void ListVehicles(List<Vehicle> vehicle)
+        {
+     
             foreach (Vehicle v in vehicle)
             {
                 if (v is Car)
                 {
-                    if (v.isNew){
+                    if (v.isNew) {
                         Console.WriteLine("\n" + "The details of the car is: ");
                         Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00, Mileage: {3}.", v.make, v.model, v.price, v.mileage);
                     }
@@ -90,11 +92,11 @@ namespace OOP2
                     }
                     if (v.sold == true) {
                         Console.WriteLine("This car has been sold, for a total of: £{0:N0}.00.", v.sellPrice);
-                        totalSales += v.sellPrice;
+             
                     }
                     else {
                         Console.WriteLine("This car has not been sold yet.");
-                        totalStock += v.price;
+                   
                     }   
                 }
 
@@ -111,37 +113,57 @@ namespace OOP2
 
                     if (v.sold == true) {
                         Console.WriteLine("This motorycle has been sold, for a total of: £{0:N0}.00.", v.sellPrice);
-                        totalSales += v.sellPrice;
+       
                     }
                     else {
                         Console.WriteLine("This motorcycle has not been sold yet.");
-                        totalStock += v.price;
                     }
                 }
             }
+        }
 
-            /*if (Car.carTotal == 0) { Console.WriteLine("\n" + "We have sold all our available cars!"); }
+        public static void StockSales(List<Vehicle> vehicle)
+        {
+            totalSales = 0;
+            totalStock = 0;
+        
+            foreach (Vehicle v in vehicle)
+            {
+                if (v is Car)
+                {
+                    if (v.sold == true) { totalSales += v.sellPrice;  }
+                    else { totalStock += v.price; }
+                }
+
+                else if (v is Motorcycle)
+                {
+                    if (v.sold == true) { totalSales += v.sellPrice; }
+                    else { totalStock += v.price; }
+                }
+            }           
+
+            if (Car.carTotal == 0) { Console.WriteLine("\n" + "We have sold all our available cars!"); }
             else { Console.WriteLine("\n" + "Total number of car in stock right now: " + Car.carTotal); }
 
             if (Car.usedCars == 0) { Console.WriteLine("\n" + "We currently have no second-hand cars stocked."); }
-            else { Console.WriteLine("\n" + "The total number of second-hand cars currently stocked is: {0}", Car.usedCars); }
+            else { Console.WriteLine("Total number of second-hand cars currently stocked is: {0}", Car.usedCars); }
 
             if (Motorcycle.cycleTotal == 0) { Console.WriteLine("\n" + "We have sold all our available motorcycles!"); }
             else { Console.WriteLine("\n" + "Total number of motorcycles in stock right now: " + Motorcycle.cycleTotal); }
 
             if (Motorcycle.usedCycles == 0) { Console.WriteLine("\n" + "We currently have no second-hand motorcycles stocked."); }
-            else { Console.WriteLine("\n" + "The total number of second-hand motorcycles currently stocked is: {0}", Motorcycle.usedCycles); }
+            else { Console.WriteLine("The total number of second-hand motorcycles currently stocked is: {0}", Motorcycle.usedCycles); }
 
             Console.WriteLine("\n" + "The total number of motorcycles sold so far is: {0}", Motorcycle.cycleSold); 
-            Console.WriteLine("\n" + "The total number of cars sold so far is: {0}", Car.carSold);
+            Console.WriteLine("The total number of cars sold so far is: {0}", Car.carSold);
 
             Console.WriteLine("\n" + "The total value of all the vehicles sold so far equals: £{0:N0}.00", totalSales);
-            Console.WriteLine("\n" + "The value of all our currently stocked vehicles equals: £{0:N0}.00" + "\n", totalStock);*/
+            Console.WriteLine("\n" + "The value of all our currently stocked vehicles equals: £{0:N0}.00" + "\n", totalStock);
         }
 
         public virtual void Wheel()
         {
-            Console.Write("{0} {1} has {2} wheels. \n", make, model, wheels);
+            Console.Write("\n{0} {1} has {2} wheels. \n", make, model, wheels);
         }
     }
 }

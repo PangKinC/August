@@ -57,18 +57,13 @@ namespace OOP2
             cycleThree.SellVehicle("motorcycle", true, 9900);
             //cycleFour.SellVehicle("motorcycle", true, 9000);
 
-
-            /*foreach (Vehicle v in vehicle)
-            {
-                v.Wheel();
-            }*/
-
-            //Vehicle.TotalSales(vehicle);
-
-            Console.WriteLine("Hello, you can add new cars into the list from this program." + "\n");
-
+            Console.WriteLine("Hello, you can access various functions to our Vehicles List here." + "\n");
             Console.WriteLine("Option 1 - Add Car - Push A");
-            Console.WriteLine("Option 2 - Exit Program - Push E" + "\n");
+            Console.WriteLine("Option 2 - Sell Vehicle - Push S");
+            Console.WriteLine("Option 3 - List Vehicles - Push V");
+            Console.WriteLine("Option 4 - List Stock & Sales - Push E");
+            Console.WriteLine("Option 5 - Wheels of Vehicles - Push W");
+            Console.WriteLine("Option 6 - Exit Program - Push X" + "\n");
 
             do
             {
@@ -93,19 +88,78 @@ namespace OOP2
                         vehicle.Add(new Car(addMake, addModel, addPrice));
 
                         Console.WriteLine("\n" + "Successfully added {0} {1}! Here is the new list: ", addMake, addModel);
-                        Vehicle.TotalSales(vehicle);
+                        Vehicle.ListVehicles(vehicle);
 
                         break;
 
+                    case "s":
+                        Console.WriteLine("\n" + "Sell Vehicle option was selected, do you want to sell a Car or Motorcycle?");
+                        userInput = Console.ReadLine().ToLower();
+
+                        if (userInput == "car" || userInput == "motorcycle")
+                        {
+                            Console.WriteLine("\n" + "What is the model of the {0} you wish to sell?", userInput);
+                            userInput = Console.ReadLine();
+
+                            int index = vehicle.FindIndex(v => v.model == userInput);
+
+                            if (index >= 0)
+                            {
+                                Console.WriteLine("\n" + "That model was found in the list! how much do you want to sell it for?");
+                                userInput = Console.ReadLine();
+                                addPrice = Convert.ToInt32(userInput);
+
+                                Console.WriteLine("\n" + "Price accepted, selling the car now ...");
+                                Vehicle foundVehicle = new Vehicle("","", 0);
+                                foundVehicle = vehicle[index];
+                                foundVehicle.SellVehicle("car", true, addPrice);
+
+                                //Console.WriteLine("\n{0} has been sold for £{1:N0}.00!", v.02.model, addPrice);
+                            }
+
+                            else
+                            {
+                                Console.WriteLine("not found!");
+                            }
+
+
+                            /*foreach (Vehicle v in vehicle) {
+                                if (v.model == userInput) {
+
+                                }
+
+                                else if (v.model != userInput) { Console.WriteLine("\n{0) was not found in the list!", userInput); }
+                           }*/
+                        }
+
+                        else { Console.WriteLine("\nWe do not stock {0}s here!", userInput); }
+                        break;
+
+                    case "v":
+                        Console.WriteLine("\n" + "Here is a list of all our vehicles: ");
+                        Vehicle.ListVehicles(vehicle);
+                        break;
+
                     case "e":
+                        Console.WriteLine("\n" + "Here is records of our stock and sales along with amount.");
+                        Vehicle.StockSales(vehicle);
+                        break;
+
+                    case "w":
+                        foreach (Vehicle v in vehicle) {
+                            v.Wheel();
+                        }
+                        break;
+
+                    case "x":
                         exit = true;
                         Environment.Exit(0);
                         break;
 
                 }
 
-                Console.WriteLine("\n" + "Add another Car? Press A.");
-                Console.WriteLine("Otherwise, Press E to exit the program." + "\n");
+                Console.WriteLine("\n" + "Want to choose another command? If so choose from: A, S, V, E, W.");
+                Console.WriteLine("Otherwise, Press X to exit the program." + "\n");
 
             } while (exit == false);
         }

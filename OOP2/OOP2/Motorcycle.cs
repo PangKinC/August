@@ -16,27 +16,12 @@ namespace OOP2
         public Motorcycle(string make, string model, int price) : base(make, model, price)
         {
             this.type = "Motorcycle";
-            this.make = make;
-            this.model = model;
-            this.price = price;
-
-            this.sold = false;
-            this.isNew = true;
-
             cycleTotal++;
         }
 
         public Motorcycle(string make, string model, int price, int mileage) : base(make, model, price, mileage)
         {
             this.type = "Motorcycle";
-            this.make = make;
-            this.model = model;
-            this.price = price;
-            this.mileage = mileage;
-
-            this.sold = false;
-            this.isNew = false;
-
             cycleTotal++;
             usedCycles++;
         }
