@@ -6,25 +6,30 @@ using System.Threading.Tasks;
 
 namespace OOP2
 {
+    // Class Motorcycle (Derived) inherits from Vehicle class (Base)
     class Motorcycle : Vehicle
     {
-        public string type;
+        // We only need to declare these unique variables for Motorcycle, the other can be inherited from Vehicle.
         public static int cycleTotal;
         public static int cycleSold;
         public static int usedCycles;
 
-        public Motorcycle(string make, string model, int price) : base(make, model, price)
+        // First constructor which represents a brand new motorcycle
+        public Motorcycle(string make, string model, int price, string type = "motorcycle") : base(make, model, price, type)
         {
-            this.type = "Motorcycle";
+            // Increments the total motorcycles we have by 1
             cycleTotal++;
         }
 
-        public Motorcycle(string make, string model, int price, int mileage) : base(make, model, price, mileage)
+        // Second constructor to represent a second-hand motorcycle with new paramater mileage included
+        public Motorcycle(string make, string model, int price, int mileage, string type = "motorcycle") : base(make, model, price, mileage, type)
         {
-            this.type = "Motorcycle";
+            // Increments the total and used (second-hand) motorcycles we have by 1
             cycleTotal++;
             usedCycles++;
         }
+
+        // The virtual method Wheel we are overriding, note that the number of wheels is 2 here (for a motorcycle)
         public override void Wheel()
         {
             wheels = 2;

@@ -10,7 +10,7 @@ namespace OOP2
     {
         static void Main(string[] args)
         {
-
+            // Declares the variables we will be using in this program
             bool exit = false;
             string userInput;
             string addMake;
@@ -18,11 +18,13 @@ namespace OOP2
             int addPrice = 0;
             string typeInput;
 
+            // Creates a new list of Vehicle to add different vehicle types into
             List<Vehicle> vehicle = new List<Vehicle>();
 
+            // Creates the Car objects with details as arguments, note that some have mileage (second constructor) and some don't
             Vehicle carOne = new Car("Mazda", "Mazda3", 6000, 60000);
             vehicle.Add(carOne);
-
+ 
             Vehicle carTwo = new Car("Honda", "Civic", 5500, 65000);
             vehicle.Add(carTwo);
 
@@ -35,6 +37,7 @@ namespace OOP2
             Vehicle carFive = new Car("Volkswagen", "Polo", 9000, 50000);
             vehicle.Add(carFive);
 
+            // Creates the Motorcycle objects with details as arguments, note that some have mileage (second constructor) and some don't
             Vehicle cycleOne = new Motorcycle("Suzuki", "Hayabusa", 9000, 40000);
             vehicle.Add(cycleOne);
 
@@ -47,6 +50,8 @@ namespace OOP2
             Vehicle cycleFour = new Motorcycle("BMW", "S1000RR", 9500, 50000);
             vehicle.Add(cycleFour);
 
+
+            // Calls the SellVehicle method from Vehicle class on some of the above vehicles.
             //carOne.SellVehicle("car", true, 7000);
             carTwo.SellVehicle("car", true, 6500);
             //carThree.SellVehicle("car", true, 9500);
@@ -58,6 +63,7 @@ namespace OOP2
             cycleThree.SellVehicle("motorcycle", true, 9900);
             //cycleFour.SellVehicle("motorcycle", true, 9000);
 
+            // The opening lines of the program, showing what keys user can push
             Console.WriteLine("Hello, you can access various functions to our Vehicles List here." + "\n");
             Console.WriteLine("Option 1 - Add Car - Push A");
             Console.WriteLine("Option 2 - Sell Vehicle - Push S");
@@ -66,99 +72,140 @@ namespace OOP2
             Console.WriteLine("Option 5 - Wheels of Vehicles - Push W");
             Console.WriteLine("Option 6 - Exit Program - Push X" + "\n");
 
+            // Initializes the do while loop, which carries on until exit is pressed.
             do
             {
+                // Takes the user inputted value
                 userInput = Console.ReadLine().ToLower();
                 
+                // Starts a switch statement block
                 switch (userInput)
                 {
+                    // For case A, we take three different user inputs, and then pass them as arguments to create add a new
                     case "a":
-                        Console.WriteLine("\n" + "Please type in the make of the car you want to add." + "\n");
-                        addMake = Console.ReadLine();
 
-                        Console.WriteLine("\n" + "Now, please type in the model of the car you want to add." + "\n");
-                        addModel = Console.ReadLine();
+                        // Asks the user whether they want to add a car or motorcycle to list
+                        Console.WriteLine("\n" + "Adding a new vehicle to the list, please choose from Car or Motorcycle");
+                        userInput = Console.ReadLine().ToLower();
+                            
+                        // If the user input was a car, do the below code
+                        if (userInput == "car")
+                        {
+                            Console.WriteLine("\n" + "Please type in the make of the car you want to add." + "\n");
+                            addMake = Console.ReadLine();
 
-                        Console.WriteLine("\n" + "Finally, please enter a price for the car you want to add." + "\n");
-                        userInput = Console.ReadLine();
+                            Console.WriteLine("\n" + "Now, please type in the model of the car you want to add." + "\n");
+                            addModel = Console.ReadLine();
 
-                        try { addPrice = Convert.ToInt32(userInput); }
-                        catch(System.FormatException e) { Console.WriteLine("\n" + "Please enter an actual number."); }
+                            Console.WriteLine("\n" + "Finally, please enter a price for the car you want to add." + "\n");
+                            userInput = Console.ReadLine();
 
-                        Console.WriteLine("\n" + "Please wait a moment, adding your car into the list ...");
-                        vehicle.Add(new Car(addMake, addModel, addPrice));
+                            try { addPrice = Convert.ToInt32(userInput); }
+                            catch (System.FormatException e) { Console.WriteLine("\n" + "Please enter an actual number."); }
 
-                        Console.WriteLine("\n" + "Successfully added {0} {1}! Here is the new list: ", addMake, addModel);
-                        Vehicle.ListVehicles(vehicle);
+                            Console.WriteLine("\n" + "Please wait a moment, adding your car into the list ...");
+                            // Adds the car with the three user inputs as arguments
+                            vehicle.Add(new Car(addMake, addModel, addPrice));
+
+                            // Confirms that the car was added into the list, then shows the list of all vehicles currently in list
+                            Console.WriteLine("\n" + "Successfully added {0} {1}! Here is the new list: ", addMake, addModel);
+                            Vehicle.ListVehicles(vehicle);
+                        }
+
+                        // If the user input was a motorcycle, do the below code
+                        else if (userInput == "motorcycle")
+                        {
+                            Console.WriteLine("\n" + "Please type in the make of the motorcycle you want to add." + "\n");
+                            addMake = Console.ReadLine();
+
+                            Console.WriteLine("\n" + "Now, please type in the model of the motorcycle you want to add." + "\n");
+                            addModel = Console.ReadLine();
+
+                            Console.WriteLine("\n" + "Finally, please enter a price for the motorcycle you want to add." + "\n");
+                            userInput = Console.ReadLine();
+
+                            try { addPrice = Convert.ToInt32(userInput); }
+                            catch (System.FormatException e) { Console.WriteLine("\n" + "Please enter an actual number."); }
+
+                            Console.WriteLine("\n" + "Please wait a moment, adding your motorcycle into the list ...");
+                            // Adds the motorcycle with the three user inputs as arguments
+                            vehicle.Add(new Motorcycle(addMake, addModel, addPrice));
+
+                            // Confirms that the motorcycle was added into the list, then shows the list of all vehicles currently in list
+                            Console.WriteLine("\n" + "Successfully added {0} {1}! Here is the new list: ", addMake, addModel);
+                            Vehicle.ListVehicles(vehicle);
+                        }
 
                         break;
 
+                    // For case S, we try to sell a vehicle in our list
                     case "s":
+                        // Ask whether user wants to sell a car or motorcycle
                         Console.WriteLine("\n" + "Sell Vehicle option was selected, do you want to sell a Car or Motorcycle?");
                         typeInput = Console.ReadLine().ToLower();
 
                         if (typeInput == "car" || typeInput == "motorcycle")
                         {
+                            // Asks the user to type in the model of the vehicle they want to sell
                             Console.WriteLine("\n" + "What is the model of the {0} you wish to sell?", typeInput);
                             userInput = Console.ReadLine();
 
+                            // Searches through the list to see if matches (uses a lambda expression to get the model property)
                             int index = vehicle.FindIndex(v => v.model == userInput);
 
-                            if (index >= 0)
-                            {
+                            // Confirms that the match was found
+                            if (index >= 0) {
+                                // Asks how much the user would like to sell the vehicle for
                                 Console.WriteLine("\n" + "That model was found in the list! how much do you want to sell it for?");
                                 userInput = Console.ReadLine();
                                 addPrice = Convert.ToInt32(userInput);
 
+                                // We initialize a empty vehicle object to match it to foundVehicle
                                 Console.WriteLine("\n" + "Price accepted, confirming the car sale now ...");
-                                Vehicle foundVehicle = new Vehicle("","", 0);
+                                Vehicle foundVehicle = new Vehicle("","", 0, "");
                                 foundVehicle = vehicle[index];
 
+                                // If the vehicle sold property is true, then we can't sell it
                                 if (foundVehicle.sold == true) {
                                     Console.WriteLine("\n" + "Request denied, this vehicle has already been sold!");
                                 }
 
+                                // Otherwise we sell the vehicle with user inputs as arguments
                                 else {
                                     Console.WriteLine("\n{0} has been sold for £{1:N0}.00!", foundVehicle.model, addPrice);
                                     foundVehicle.SellVehicle(typeInput, true, addPrice);
-                                }
-                                
+                                }         
+
                             }
 
-                            else
-                            {
-                                Console.WriteLine("not found!");
-                            }
-
-
-                            /*foreach (Vehicle v in vehicle) {
-                                if (v.model == userInput) {
-
-                                }
-
-                                else if (v.model != userInput) { Console.WriteLine("\n{0) was not found in the list!", userInput); }
-                           }*/
+                            // The input from user couldn't match with a model found in the list
+                            else { Console.WriteLine("\n{0) was not found in the list!", userInput); }
                         }
 
+                        // Shows that we don't have that type of vehicle (not a car or motorcycle) in list
                         else { Console.WriteLine("\nWe do not stock {0}s here!", userInput); }
                         break;
 
+                    // Case V calls the ListVehicle method from Vehicle class, shows details of every vehicle in list.
                     case "v":
                         Console.WriteLine("\n" + "Here is a list of all our vehicles: ");
                         Vehicle.ListVehicles(vehicle);
                         break;
 
+                    // Case E shows the StockSales method from Vehicle class, to show all the total price and stock amount
                     case "e":
                         Console.WriteLine("\n" + "Here is records of our stock and sales along with amount.");
                         Vehicle.StockSales(vehicle);
                         break;
 
+                    // Case W calls the virtual method Wheel and prints screen how much wheels each vehicle has.
                     case "w":
                         foreach (Vehicle v in vehicle) {
                             v.Wheel();
                         }
                         break;
 
+                    // Case E exits the program
                     case "x":
                         exit = true;
                         Environment.Exit(0);
@@ -166,6 +213,7 @@ namespace OOP2
 
                 }
 
+                // When you reach end of the loop, we show the list of commands again as a reminder
                 Console.WriteLine("\n" + "Want to choose another command? If so choose from: A, S, V, E, W.");
                 Console.WriteLine("Otherwise, Press X to exit the program." + "\n");
 
