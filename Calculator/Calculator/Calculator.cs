@@ -14,6 +14,10 @@ namespace Calculator
     {
         string operandOne = "";
         string operandTwo = "";
+
+        decimal opOne;
+        decimal opTwo;
+
         string result;
         char operation;
 
@@ -35,7 +39,6 @@ namespace Calculator
             buttonNine.Click += new EventHandler(numberClick);
             buttonZero.Click += new EventHandler(numberClick);
             buttonDot.Click += new EventHandler(numberClick);
-
         }
 
         public void numberClick(object sender, EventArgs e)
@@ -82,6 +85,32 @@ namespace Calculator
             }
         }
 
+        private void buttonEquals_Click(object sender, EventArgs e)
+        {
+            operandTwo = resultBox.Text;
+
+            decimal.TryParse(operandOne, out opOne);
+            decimal.TryParse(operandTwo, out opTwo);
+
+            switch (operation)
+            {
+                case '+':
+                    result = (opOne + opTwo).ToString();
+                    break;
+                case '-':
+                    result = (opOne - opTwo).ToString();
+                    break;
+                case '*':
+                    result = (opOne * opTwo).ToString();
+                    break;
+                case '/':
+                    if (opTwo != 0) { result = (opOne / opTwo).ToString(); }
+                    else { result = "Can't divide by 0."; }
+                    break;
+            }
+            resultBox.Text = result;
+        }
+
         private void buttonPlus_Click(object sender, EventArgs e)
         {
             operandOne = resultBox.Text;
@@ -89,48 +118,71 @@ namespace Calculator
             resultBox.Text = "";
         }
 
-        private void resultBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void buttonMinus_Click(object sender, EventArgs e)
         {
-            switch (e.KeyChar)
-            {
-                //case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                case '0':
-                    break;
-                default:
-                    break;
-
-            }
+            operandOne = resultBox.Text;
+            operation = '-';
+            resultBox.Text = "";
         }
 
-        private void buttonEquals_Click(object sender, EventArgs e)
+        private void buttonTimes_Click(object sender, EventArgs e)
         {
-            operandTwo = resultBox.Text;
+            operandOne = resultBox.Text;
+            operation = '*';
+            resultBox.Text = "";
+        }
 
-            double opOne;
-            double opTwo;
+        private void buttonDivide_Click(object sender, EventArgs e)
+        {
+            operandOne = resultBox.Text;
+            operation = '/';
+            resultBox.Text = "";
+        }
 
-            double.TryParse(operandOne, out opOne);
-            double.TryParse(operandTwo, out opTwo);
+        private void resultBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.NumPad1) { buttonOne.PerformClick(); }
+            if (e.KeyCode == Keys.NumPad2) { buttonTwo.PerformClick(); }
+            if (e.KeyCode == Keys.NumPad3) { buttonThree.PerformClick(); }
+            if (e.KeyCode == Keys.NumPad4) { buttonFour.PerformClick(); }
+            if (e.KeyCode == Keys.NumPad5) { buttonFive.PerformClick(); }
+            if (e.KeyCode == Keys.NumPad6) { buttonSix.PerformClick(); }
+            if (e.KeyCode == Keys.NumPad7) { buttonSeven.PerformClick(); }
+            if (e.KeyCode == Keys.NumPad8) { buttonEight.PerformClick(); }
+            if (e.KeyCode == Keys.NumPad9) { buttonNine.PerformClick(); }
+            if (e.KeyCode == Keys.NumPad0) { buttonZero.PerformClick(); }
+            if (e.KeyCode == Keys.Decimal) { buttonDot.PerformClick(); }
 
+            if (e.KeyCode == Keys.Add) { buttonPlus.PerformClick(); }
+            if (e.KeyCode == Keys.Subtract) { buttonMinus.PerformClick(); }
+            if (e.KeyCode == Keys.Multiply) { buttonTimes.PerformClick(); }
+            if (e.KeyCode == Keys.Divide) { buttonDivide.PerformClick(); }
+            if (e.KeyCode == Keys.Enter) { buttonEquals.PerformClick(); }
+            if (e.KeyCode == Keys.Escape) { buttonClear.PerformClick(); }
 
-            switch (operation)
-            {
-                case '+':
-                    result = (opOne + opTwo).ToString();
-                    break;
+            else { e.SuppressKeyPress = true; }
+        }
 
-            }
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            resultBox.Text = "";
+            operandOne = "";
+            operandTwo = "";
+        }
 
-            resultBox.Text = result;
+        private void buttonRoot_Click(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(resultBox.Text, out opOne)) { resultBox.Text = (Math.Sqrt((double)opOne)).ToString(); }   
+        }
 
+        private void buttonSquare_Click(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(resultBox.Text, out opOne)) { resultBox.Text = (opOne * opOne).ToString(); }
+        }
+
+        private void buttonQuarter_Click(object sender, EventArgs e)
+        {
+            if(decimal.TryParse(resultBox.Text, out opOne)) { resultBox.Text = decimal.Negate(opOne).ToString(); }
         }
     }
 }

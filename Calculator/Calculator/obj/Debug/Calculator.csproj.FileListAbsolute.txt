@@ -7,3 +7,12 @@ C:\Users\student\Kin Pang\GitHub\August\Calculator\Calculator\bin\Debug\Calculat
 C:\Users\student\Kin Pang\GitHub\August\Calculator\Calculator\bin\Debug\Calculator.pdb
 C:\Users\student\Kin Pang\GitHub\August\Calculator\Calculator\obj\Debug\Calculator.exe
 C:\Users\student\Kin Pang\GitHub\August\Calculator\Calculator\obj\Debug\Calculator.pdb
+C:\Users\Suijin\Documents\GitHub\August\Calculator\Calculator\bin\Debug\Calculator.exe.config
+C:\Users\Suijin\Documents\GitHub\August\Calculator\Calculator\obj\Debug\Calculator.exe
+C:\Users\Suijin\Documents\GitHub\August\Calculator\Calculator\obj\Debug\Calculator.pdb
+C:\Users\Suijin\Documents\GitHub\August\Calculator\Calculator\bin\Debug\Calculator.exe
+C:\Users\Suijin\Documents\GitHub\August\Calculator\Calculator\bin\Debug\Calculator.pdb
+C:\Users\Suijin\Documents\GitHub\August\Calculator\Calculator\obj\Debug\Calculator.csprojResolveAssemblyReference.cache
+C:\Users\Suijin\Documents\GitHub\August\Calculator\Calculator\obj\Debug\Calculator.Calculator.resources
+C:\Users\Suijin\Documents\GitHub\August\Calculator\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+C:\Users\Suijin\Documents\GitHub\August\Calculator\Calculator\obj\Debug\Calculator.csproj.GenerateResource.Cache
