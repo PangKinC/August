@@ -16,6 +16,7 @@ namespace OOP2
             string addMake;
             string addModel;
             int addPrice = 0;
+            int addMileage = 0;
             string typeInput;
 
             // Creates a new list of Vehicle to add different vehicle types into
@@ -91,21 +92,35 @@ namespace OOP2
                         // If the user input was a car, do the below code
                         if (userInput == "car")
                         {
-                            Console.WriteLine("\n" + "Please type in the make of the car you want to add." + "\n");
+                            Console.WriteLine("\n" + "Please type in the make of the car you want to add.");
                             addMake = Console.ReadLine();
 
-                            Console.WriteLine("\n" + "Now, please type in the model of the car you want to add." + "\n");
+                            Console.WriteLine("\n" + "Now, please type in the model of the car you want to add.");
                             addModel = Console.ReadLine();
 
-                            Console.WriteLine("\n" + "Finally, please enter a price for the car you want to add." + "\n");
+                            Console.WriteLine("\n" + "Finally, please enter a price for the car you want to add.");
                             userInput = Console.ReadLine();
 
                             try { addPrice = Convert.ToInt32(userInput); }
                             catch (System.FormatException e) { Console.WriteLine("\n" + "Please enter an actual number."); }
 
-                            Console.WriteLine("\n" + "Please wait a moment, adding your car into the list ...");
-                            // Adds the car with the three user inputs as arguments
-                            vehicle.Add(new Car(addMake, addModel, addPrice));
+                            // This section asks the user for a mileage, which determines whether car is new or not
+                            Console.WriteLine("\n" + "Is this a new a car?, if yes enter the mileage, if not leave blank.");
+                            userInput = Console.ReadLine();
+
+                            // If the user entered some text, we try convert it into a number
+                            if (userInput != "") {   
+                                addMileage = Convert.ToInt32(userInput);
+                                Console.WriteLine("\n" + "Please wait a moment, adding your car into the list ...");
+                                // Adds a new car with the second constructor, which has mileage as parameter
+                                vehicle.Add(new Car(addMake, addModel, addPrice, addMileage));
+                            }
+
+                            else {
+                                Console.WriteLine("\n" + "Please wait a moment, adding your car into the list ...");
+                                // Adds the car with the three user inputs as arguments
+                                vehicle.Add(new Car(addMake, addModel, addPrice));
+                            }
 
                             // Confirms that the car was added into the list, then shows the list of all vehicles currently in list
                             Console.WriteLine("\n" + "Successfully added {0} {1}! Here is the new list: ", addMake, addModel);
@@ -115,21 +130,36 @@ namespace OOP2
                         // If the user input was a motorcycle, do the below code
                         else if (userInput == "motorcycle")
                         {
-                            Console.WriteLine("\n" + "Please type in the make of the motorcycle you want to add." + "\n");
+                            Console.WriteLine("\n" + "Please type in the make of the motorcycle you want to add.");
                             addMake = Console.ReadLine();
 
-                            Console.WriteLine("\n" + "Now, please type in the model of the motorcycle you want to add." + "\n");
+                            Console.WriteLine("\n" + "Now, please type in the model of the motorcycle you want to add.");
                             addModel = Console.ReadLine();
 
-                            Console.WriteLine("\n" + "Finally, please enter a price for the motorcycle you want to add." + "\n");
+                            Console.WriteLine("\n" + "Finally, please enter a price for the motorcycle you want to add.");
                             userInput = Console.ReadLine();
 
                             try { addPrice = Convert.ToInt32(userInput); }
                             catch (System.FormatException e) { Console.WriteLine("\n" + "Please enter an actual number."); }
 
-                            Console.WriteLine("\n" + "Please wait a moment, adding your motorcycle into the list ...");
-                            // Adds the motorcycle with the three user inputs as arguments
-                            vehicle.Add(new Motorcycle(addMake, addModel, addPrice));
+                            // This section asks the user for a mileage, which determines whether motorcycle is new or not
+                            Console.WriteLine("\n" + "Is this a new a motorcycle?, if yes enter the mileage, if not leave blank.");
+                            userInput = Console.ReadLine();
+
+                            // If the user entered some text, we try convert it into a number
+                            if (userInput != "")
+                            {
+                                addMileage = Convert.ToInt32(userInput);
+                                Console.WriteLine("\n" + "Please wait a moment, adding your motorcycle into the list ...");
+                                // Adds a new motorcycle with the second constructor, which has mileage as parameter
+                                vehicle.Add(new Motorcycle(addMake, addModel, addPrice, addMileage));
+                            }
+
+                            else {
+                                Console.WriteLine("\n" + "Please wait a moment, adding your motorcycle into the list ...");
+                                // Adds the car with the three user inputs as arguments
+                                vehicle.Add(new Motorcycle(addMake, addModel, addPrice));
+                            }
 
                             // Confirms that the motorcycle was added into the list, then shows the list of all vehicles currently in list
                             Console.WriteLine("\n" + "Successfully added {0} {1}! Here is the new list: ", addMake, addModel);
@@ -186,10 +216,44 @@ namespace OOP2
                         else { Console.WriteLine("\nWe do not stock {0}s here!", userInput); }
                         break;
 
-                    // Case V calls the ListVehicle method from Vehicle class, shows details of every vehicle in list.
+                    // Case V calls either a single vehicle or all the vehicles in the list
                     case "v":
-                        Console.WriteLine("\n" + "Here is a list of all our vehicles: ");
-                        Vehicle.ListVehicles(vehicle);
+                        // Gets user input and asks to type either one or all for single or every vehicle in list
+                        Console.WriteLine("\nDo you want to display a single vehicle or all of them?");
+                        Console.WriteLine("For a single vehicle type: (one), for all vehicles type: (all)");
+
+                        userInput = Console.ReadLine().ToLower();
+                        
+                        // If user input typed was one
+                        if (userInput == "one") {
+
+                            // Asks for user input to try locate the vehicle model in the list
+                            Console.WriteLine("\nPlease type in the model of the vehicle you want to list.");
+
+                            userInput = Console.ReadLine();
+                            // Uses lambda expression to find the model and assigns it to a integer check model
+                            int checkModel = vehicle.FindIndex(v => v.model == userInput);
+
+                            // If check was found, it would be either equal or over 0
+                            if (checkModel >= 0) {
+                                // We create a empty Vehicle object and assign it with checkModel which matches with the model in question
+                                Vehicle vehicleMatch = new Vehicle("", "", 0, "");
+                                vehicleMatch = vehicle[checkModel];
+
+                                // Calls the ListVehicle method from Vehicle to display the single vehicle details
+                                Vehicle.ListVehicle(vehicleMatch);
+                            }
+                            // Else statement is true when the model was not matched inside list
+                            else { Console.WriteLine("\nThat model was not found inside the list!"); }
+                        }   
+
+                        // If the gotten user input was all
+                        else if (userInput == "all") {
+                            // We show the list of all the vehicles inside our list.
+                            Console.WriteLine("\n" + "Here is a list of all our vehicles: ");
+                            Vehicle.ListVehicles(vehicle);
+                        }
+
                         break;
 
                     // Case E shows the StockSales method from Vehicle class, to show all the total price and stock amount

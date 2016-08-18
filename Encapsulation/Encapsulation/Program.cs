@@ -29,6 +29,7 @@ namespace RestaurantEncapsulationExercise
     public class Sales
     {
         public static decimal balance { get; set; }
+
         public static decimal doSales(Meal meal)
         {
             balance += meal.price;

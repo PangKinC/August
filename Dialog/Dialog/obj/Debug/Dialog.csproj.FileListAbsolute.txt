@@ -1,0 +1,10 @@
+C:\Users\student\Kin Pang\GitHub\August\Dialog\Dialog\bin\Debug\Dialog.exe.config
+C:\Users\student\Kin Pang\GitHub\August\Dialog\Dialog\bin\Debug\Dialog.exe
+C:\Users\student\Kin Pang\GitHub\August\Dialog\Dialog\bin\Debug\Dialog.pdb
+C:\Users\student\Kin Pang\GitHub\August\Dialog\Dialog\obj\Debug\Dialog.csprojResolveAssemblyReference.cache
+C:\Users\student\Kin Pang\GitHub\August\Dialog\Dialog\obj\Debug\Dialog.Form1.resources
+C:\Users\student\Kin Pang\GitHub\August\Dialog\Dialog\obj\Debug\Dialog.Properties.Resources.resources
+C:\Users\student\Kin Pang\GitHub\August\Dialog\Dialog\obj\Debug\Dialog.csproj.GenerateResource.Cache
+C:\Users\student\Kin Pang\GitHub\August\Dialog\Dialog\obj\Debug\Dialog.exe
+C:\Users\student\Kin Pang\GitHub\August\Dialog\Dialog\obj\Debug\Dialog.pdb
+C:\Users\student\Kin Pang\GitHub\August\Dialog\Dialog\obj\Debug\Dialog.Form2.resources

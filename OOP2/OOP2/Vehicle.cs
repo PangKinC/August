@@ -77,6 +77,44 @@ namespace OOP2
 
         }
 
+        public static void ListVehicle(Vehicle vehicle)
+        {
+            if (vehicle is Car) {
+                if (vehicle.isNew == true) {
+                    // Returns the below details of the car along with mileage
+                    Console.WriteLine("\n" + "The details of the car is: ");
+                    Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00.", vehicle.make, vehicle.model, vehicle.price);
+                }
+                // Returns the car details but without mileage
+                else {
+                    Console.WriteLine("\n" + "The details of the car is: ");
+                    Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00, Mileage: {3}.", vehicle.make, vehicle.model, vehicle.price, vehicle.mileage);
+                }
+                // Checks to see whether the car has been sold, if it was sold, shows the amount it was shown for
+                if (vehicle.sold == true) { Console.WriteLine("This car has been sold, for a total of: £{0:N0}.00.", vehicle.sellPrice); }
+                // Otherwise state car has not been sold yet
+                else { Console.WriteLine("This car has not been sold yet."); }
+            }
+
+            else if (vehicle is Motorcycle) {
+                if (vehicle.isNew == true) {
+                    // Returns the below details of the motorcycle along with mileage
+                    Console.WriteLine("\n" + "The details of the motorcycle is: ");
+                    Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00.", vehicle.make, vehicle.model, vehicle.price);
+                }
+                // Returns the motorcycle details but without mileage
+                else {
+                    Console.WriteLine("\n" + "The details of the motorcycle is: ");
+                    Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00, Mileage: {3}.", vehicle.make, vehicle.model, vehicle.price, vehicle.mileage);
+                }
+                // Checks to see whether the motorcycle has been sold, if it was sold, shows the amount it was shown for
+                if (vehicle.sold == true) { Console.WriteLine("This car has been sold, for a total of: £{0:N0}.00.", vehicle.sellPrice); }
+                // Otherwise state motorcycle has not been sold yet
+                else { Console.WriteLine("This car has not been sold yet."); }
+            }
+        }
+     
+
         // List all the current vehicles we have added into our list
         public static void ListVehicles(List<Vehicle> vehicle)
         {
@@ -88,17 +126,17 @@ namespace OOP2
                 if (v is Car)
                 {
                     // Check if the car is new 
-                    if (v.isNew) {
+                    if (v.isNew == true) {
                     // Returns the below details of the car along with mileage
                         Console.WriteLine("\n" + "The details of the car is: ");
-                        Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00, Mileage: {3}.", v.make, v.model, v.price, v.mileage);
+                        Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00.", v.make, v.model, v.price);
                     }
                     // Returns the car details but without mileage
                     else {
                         Console.WriteLine("\n" + "The details of the car is: ");
-                        Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00.", v.make, v.model, v.price);
+                        Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00, Mileage: {3}.", v.make, v.model, v.price, v.mileage);
                     }
-                    // Checks to see whether has been sold
+                    // Checks to see whether the car has been sold
                     if (v.sold == true) {
                         // If it was sold, shows the amount it was shown for
                         Console.WriteLine("This car has been sold, for a total of: £{0:N0}.00.", v.sellPrice);
@@ -114,13 +152,14 @@ namespace OOP2
                 // Checks whether vehicle is a motorcycle, rest of code is same as car.
                 else if (v is Motorcycle)
                 {
-                    if (v.isNew == false) {
-                        Console.WriteLine("\n" + "The details of the motorcycle is: ");
-                        Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00, Mileage: {3}.", v.make, v.model, v.price, v.mileage);
-                    }
-                    else {
+                    if (v.isNew == true) {
                         Console.WriteLine("\n" + "The details of the motorcycle is: ");
                         Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00.", v.make, v.model, v.price);
+                    }
+
+                    else {
+                        Console.WriteLine("\n" + "The details of the motorcycle is: ");
+                        Console.WriteLine("Make: {0}, Model: {1}, Price: £{2:N0}.00, Mileage: {3}.", v.make, v.model, v.price, v.mileage);
                     }
 
                     if (v.sold == true) {

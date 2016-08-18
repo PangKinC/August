@@ -1,0 +1,9 @@
+C:\Users\student\Kin Pang\GitHub\August\firstQuiz\firstQuiz\bin\Debug\firstQuiz.exe.config
+C:\Users\student\Kin Pang\GitHub\August\firstQuiz\firstQuiz\bin\Debug\firstQuiz.exe
+C:\Users\student\Kin Pang\GitHub\August\firstQuiz\firstQuiz\bin\Debug\firstQuiz.pdb
+C:\Users\student\Kin Pang\GitHub\August\firstQuiz\firstQuiz\obj\Debug\firstQuiz.csprojResolveAssemblyReference.cache
+C:\Users\student\Kin Pang\GitHub\August\firstQuiz\firstQuiz\obj\Debug\firstQuiz.Form1.resources
+C:\Users\student\Kin Pang\GitHub\August\firstQuiz\firstQuiz\obj\Debug\firstQuiz.Properties.Resources.resources
+C:\Users\student\Kin Pang\GitHub\August\firstQuiz\firstQuiz\obj\Debug\firstQuiz.csproj.GenerateResource.Cache
+C:\Users\student\Kin Pang\GitHub\August\firstQuiz\firstQuiz\obj\Debug\firstQuiz.exe
+C:\Users\student\Kin Pang\GitHub\August\firstQuiz\firstQuiz\obj\Debug\firstQuiz.pdb

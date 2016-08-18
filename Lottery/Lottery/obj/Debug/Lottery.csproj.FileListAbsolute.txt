@@ -1,0 +1,8 @@
+C:\Users\student\Kin Pang\GitHub\August\Lottery\Lottery\bin\Debug\Lottery.exe.config
+C:\Users\student\Kin Pang\GitHub\August\Lottery\Lottery\bin\Debug\Lottery.exe
+C:\Users\student\Kin Pang\GitHub\August\Lottery\Lottery\bin\Debug\Lottery.pdb
+C:\Users\student\Kin Pang\GitHub\August\Lottery\Lottery\obj\Debug\Lottery.Form1.resources
+C:\Users\student\Kin Pang\GitHub\August\Lottery\Lottery\obj\Debug\Lottery.Properties.Resources.resources
+C:\Users\student\Kin Pang\GitHub\August\Lottery\Lottery\obj\Debug\Lottery.csproj.GenerateResource.Cache
+C:\Users\student\Kin Pang\GitHub\August\Lottery\Lottery\obj\Debug\Lottery.exe
+C:\Users\student\Kin Pang\GitHub\August\Lottery\Lottery\obj\Debug\Lottery.pdb
