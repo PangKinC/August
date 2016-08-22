@@ -4,3 +4,6 @@ C:\Users\student\Kin Pang\GitHub\August\Assessment2\Assessment2\bin\Debug\Assess
 C:\Users\student\Kin Pang\GitHub\August\Assessment2\Assessment2\obj\Debug\Assessment2.csprojResolveAssemblyReference.cache
 C:\Users\student\Kin Pang\GitHub\August\Assessment2\Assessment2\obj\Debug\Assessment2.exe
 C:\Users\student\Kin Pang\GitHub\August\Assessment2\Assessment2\obj\Debug\Assessment2.pdb
+C:\Users\student\Kin Pang\GitHub\August\C#\Assessment2\Assessment2\bin\Debug\Assessment2.exe.config
+C:\Users\student\Kin Pang\GitHub\August\C#\Assessment2\Assessment2\obj\Debug\Assessment2.exe
+C:\Users\student\Kin Pang\GitHub\August\C#\Assessment2\Assessment2\obj\Debug\Assessment2.pdb
