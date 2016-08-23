@@ -6,7 +6,7 @@ package dayOne.primitives;
 public class Arrays {
 
     public static void main(String[] args){
-        int[] test = { 3, 2, 2, 5, 7, 9, 7, 10};
+        int[] test = { 3, 2, 2, 6, 7, 9, 7, 10};
         int[] testTwo = { 0, 2, 3, 1, 5 };
         int[] testThree = {1, 0, 2};
 
@@ -14,8 +14,8 @@ public class Arrays {
         //countsEven(test);
         //bigDiff(test);
         //sumThirteen(test);
-        //sumSixSeven(test);
-        hasTwoTwo(test);
+        sumSixSeven(test);
+        //System.out.println(hasTwoTwo(test));
         //System.out.println(hasTwoThree(test));
 
     }
@@ -130,39 +130,35 @@ public class Arrays {
 
     static void sumSixSeven(int[] numbers) {
         int result = 0;
+        boolean sixFound = false;
         int resultTwo = 0;
 
-        for (int i = 0; i < numbers.length - 1;  i++){
-            if (numbers[i] != 6 && numbers[i] != 7) {
-                result += numbers[i];
-            }
+        for (int i = 0; i < numbers.length; i++){
+            resultTwo = numbers[i];
 
-            else if (numbers[i] == 6) {
-                result -= 6;
+            if (numbers[i] == 6 && sixFound) {
+                sixFound = true;
+                resultTwo -= 6;
             }
-
-            else if (numbers[i] == 7) {
-                    resultTwo = result;
-                    resultTwo += numbers[i];
+            else if (numbers[i] == 7 && !sixFound) {
+                sixFound = false;
             }
+            else if (numbers[i] != 6 && numbers[i] != 7 && sixFound) {
+                   resultTwo += numbers[i];
+            }
+            result = resultTwo;
         }
-        System.out.println(resultTwo);
+        System.out.println(result);
     }
 
     static boolean hasTwoTwo(int[] numbers){
 
-        boolean found = false;
-
         for (int i = 0; i < numbers.length; i++){
             if (numbers[i] == 2 && numbers[i+1] == 2){
-                System.out.println("Hello");
-                found = true;
-                break;
+                return true;
             }
-            else { found = false; }
         }
-        //System.out.println("Test");
-        return found;
+        return false;
     }
 }
 
