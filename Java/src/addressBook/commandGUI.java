@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static addressBook.contactGenerator.contacts;
+
 /**
  * Created by student on 23-Aug-16.
  */
@@ -16,33 +18,51 @@ public class commandGUI {
         int choice;
 
         do {
-            System.out.println("This is your Contacts.");
+            System.out.println();
+            System.out.println("Manage Your Contacts Here.");
+            System.out.println();
             System.out.println("1. Add Contact.");
             System.out.println("2. Edit Contact");
             System.out.println("3. Remove Contact");
-            System.out.println("4. List all Contacts");
-            System.out.println("5. Search Contact by First Name");
+            System.out.println("4. List All Contacts");
+            System.out.println("5. Search Contacts");
             System.out.println("6. Exit Program");
             System.out.println();
-            System.out.println("Enter a value been (1-6): ");
+            System.out.print("Choose an option from the above list (value 1-6): ");
 
             choice = input.nextInt();
 
         } while (choice < 1 || choice > 6);
 
-        List<String> tempData = new ArrayList<>();
+        int index;
+        List<String> tempData;
 
         switch (choice) {
             case 1:
+                System.out.println("\nPlease enter in the coming fields details of the new contact.");
                 tempData = inputScreen();
                 taskProcessing.addNewContact(tempData);
                 display();
             case 2:
+                System.out.println("\nTo edit the details of a contact, please follow instructions below: ");
+                index = searchFirstName();
+                tempData = inputScreen();
+                taskProcessing.editContact(index, tempData);
+                display();
             case 3:
+                System.out.println("\nYou have chosen to delete a contact, please follow instructions below: ");
+                taskProcessing.removeContact(requestIndex());
+                System.out.println("\n... Contact has been removed from the database.");
+                display();
             case 4:
+                System.out.println("\nHere is the list of all your contacts: ");
                 taskProcessing.listContacts();
                 display();
             case 5:
+                System.out.println("\nYou have chosen to search for a contact, please follow instructions below: ");
+                index = searchFirstName();
+                System.out.println("\n" + contacts.get(index));
+                display();
             case 6:
                 break;
         }
@@ -53,13 +73,15 @@ public class commandGUI {
         List<String> contactsData = new ArrayList<>();
         input.nextLine();
 
-        System.out.println("Enter First Name: ");
+        System.out.println();
+
+        System.out.print("Enter First Name: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter Last Name: ");
+        System.out.print("Enter Last Name: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter D.O.B (YYYY/MM/DD): ");
+        System.out.print("Enter D.O.B (YYYY/MM/DD): ");
         String dob = input.nextLine();
         String[] dobData = dob.split("/");
 
@@ -67,36 +89,48 @@ public class commandGUI {
             contactsData.add(dobData[i]);
         }
 
-        System.out.println("Enter first line of address: ");
+        System.out.print("Enter first line of address: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter second line of address: ");
+        System.out.print("Enter second line of address: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter the town: ");
+        System.out.print("Enter the town: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter the county: ");
+        System.out.print("Enter the county: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter the postcode: ");
+        System.out.print("Enter the postcode: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter home number: ");
+        System.out.print("Enter home number: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter mobile number: ");
+        System.out.print("Enter mobile number: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter a email address: ");
+        System.out.print("Enter a email address: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter Facebook login: ");
+        System.out.print("Enter Facebook details: ");
         contactsData.add(input.nextLine());
 
-        System.out.println("Enter @Twitter login: ");
+        System.out.print("Enter @Twitter details: ");
         contactsData.add(input.nextLine());
 
         return contactsData;
+    }
+
+    static int searchFirstName(){
+        System.out.print("\nEnter the First Name of the Contact: ");
+        String firstName = input.next();
+        System.out.println("\nContact was found!");
+        return taskProcessing.searchContact(firstName);
+    }
+
+    static int requestIndex() {
+        System.out.print("\nEnter the index number of a contact to remove: ");
+        return input.nextInt();
     }
 }

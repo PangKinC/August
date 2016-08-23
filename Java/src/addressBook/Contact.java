@@ -1,10 +1,12 @@
 package addressBook;
 
+import java.time.LocalDate;
+
 /**
  * Created by student on 23-Aug-16.
  */
 
-public class Contact {
+public class Contact extends Person{
     private String phoneNumber;
     private String mobileNumber;
     private String email;
@@ -56,19 +58,21 @@ public class Contact {
 
     Contact() {}
 
-    public Contact(Person p, Address a, String phoneNumber, String mobileNumber, String email, String facebook, String twitter) {
+    public Contact(String firstName, String lastName, LocalDate birthDate, Address a, String phoneNumber, String mobileNumber, String email, String facebook, String twitter) {
+
+        super(firstName, lastName, birthDate);
+        this.a = a;
         this.phoneNumber = phoneNumber;
         this.mobileNumber = mobileNumber;
         this.email = email;
         this.facebook = facebook;
         this.twitter = twitter;
-        this.p = p;
-        this.a = a;
     }
 
     @Override
     public String toString() {
-        return String.format(" Contact: %s, %s, %s, %s, %s, %s, %s ", this.p, this.a, this.phoneNumber, this.mobileNumber, this.email, this.facebook,
+        return String.format("Contact: %s %s " + "\n" + "Home Number: %s, Mobile Number: %s, Email Address: %s, " +
+                        "Facebook: %s, Twitter: %s.", super.toString(), this.a, this.phoneNumber, this.mobileNumber, this.email, this.facebook,
                                 this.twitter);
     }
 }

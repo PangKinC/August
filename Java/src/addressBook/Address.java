@@ -62,6 +62,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return String.format(" Address: %s %s, %s, %s, %s.", this.lineOne, this.lineTwo, this.town, this.county, this.postcode);
+        return String.format("Address: %s %s, %s, %s. Postcode: %s.", this.lineOne, this.lineTwo, this.town, this.county, this.postcode);
     }
 }

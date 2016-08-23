@@ -6,7 +6,7 @@ import java.time.temporal.ChronoUnit;
 /**
  * Created by student on 23-Aug-16.
  */
-public class Person {
+public class Person extends Address{
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
@@ -51,7 +51,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("%s %s, %s.", this.firstName, this.lastName, this.birthDate, this.getAge());
+        return String.format("%s %s, D.O.B: %s, Age: %s.", this.firstName, this.lastName, this.birthDate, this.getAge());
     }
 
 }
