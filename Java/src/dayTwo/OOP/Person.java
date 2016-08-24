@@ -6,7 +6,7 @@ import java.time.temporal.ChronoUnit;
 /**
  * Created by student on 23-Aug-16.
  */
-public class Person {
+public abstract class Person {
     //fields
     private String firstName;
     private String lastName;

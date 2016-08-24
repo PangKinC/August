@@ -8,11 +8,13 @@ import static dayTwo.OOP.peopleGenerator.people;
 public class Program {
     public static void main(String[] args){
 
-        /*peopleGenerator.addPeople();
-
-        for(Person p : people){
+        /*for(Person p : people){
             System.out.println(p);
         }*/
-        commandGUI.display();
+
+        //commandGUI.display();
+        peopleGenerator.addPeople();
+        taskProcessing.executeGUI();
+
     }
 }

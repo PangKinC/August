@@ -8,7 +8,7 @@ import static addressBook.contactGenerator.addContact;
 public class Program {
     public static void main(String[] args) {
         addContact();
-        commandGUI.display();
+        GUI.display();
     }
 }
 

@@ -10,20 +10,31 @@ import static dayTwo.OOP.peopleGenerator.people;
  */
 
 public class taskProcessing {
-    static void createEmployee(List<String> data){
+
+    static mainWindow gui;
+
+    static void executeGUI() {
+        gui = new mainWindow();
+    }
+
+    static void createEmployee(){
 
         Employee temp = new Employee(
+                gui.
                 data.get(0),
                 data.get(1),
                 Short.parseShort(data.get(2)),
                 Double.parseDouble(data.get(3)),
-                LocalDate.of(Integer.parseInt(data.get(4)), Integer.parseInt(data.get(5)),
+                LocalDate.of(
+                        Integer.parseInt(data.get(4)),
+                        Integer.parseInt(data.get(5)),
                         Integer.parseInt(data.get(6))),
                 checkSex(data.get(7)),
                 data.get(8),
-                LocalDate.of(Integer.parseInt(data.get(9)), Integer.parseInt(data.get(10)),
-                        Integer.parseInt(data.get(11)))
-        );
+                LocalDate.of(
+                        Integer.parseInt(data.get(9)),
+                        Integer.parseInt(data.get(10)),
+                        Integer.parseInt(data.get(11))));
 
         people.add(temp);
 

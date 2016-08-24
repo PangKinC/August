@@ -40,21 +40,26 @@ public class commandGUI {
                 tempData = inputScreen();
                 taskProcessing.createEmployee(tempData);
                 display();
+                break;
             case 2:
                 index = findFirstName();
                 tempData = inputScreen();
                 taskProcessing.editDetails(index, tempData);
                 display();
+                break;
             case 3:
                 taskProcessing.removeEmployee(requestIndex());
                 display();
+                break;
             case 4:
                 taskProcessing.printAll();
                 display();
+                break;
             case 5:
                 index = findFirstName();
                 System.out.println(people.get(index));
                 display();
+                break;
             case 6:
                 break;
         }

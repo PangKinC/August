@@ -75,4 +75,8 @@ public class Contact extends Person{
                         "Facebook: %s, Twitter: %s.", super.toString(), this.a, this.phoneNumber, this.mobileNumber, this.email, this.facebook,
                                 this.twitter);
     }
+
+    public Address getAddress() {
+        return a;
+    }
 }

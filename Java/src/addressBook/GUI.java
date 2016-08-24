@@ -10,7 +10,7 @@ import static addressBook.contactGenerator.contacts;
  * Created by student on 23-Aug-16.
  */
 
-public class commandGUI {
+public class GUI {
 
     static Scanner input = new Scanner(System.in);
 
@@ -38,31 +38,37 @@ public class commandGUI {
         List<String> tempData;
 
         switch (choice) {
+
             case 1:
                 System.out.println("\nPlease enter in the coming fields details of the new contact.");
                 tempData = inputScreen();
-                taskProcessing.addNewContact(tempData);
+                Processor.addNewContact(tempData);
                 display();
+                break;
             case 2:
                 System.out.println("\nTo edit the details of a contact, please follow instructions below: ");
                 index = searchFirstName();
                 tempData = inputScreen();
-                taskProcessing.editContact(index, tempData);
+                Processor.editContact(index, tempData);
                 display();
+                break;
             case 3:
                 System.out.println("\nYou have chosen to delete a contact, please follow instructions below: ");
-                taskProcessing.removeContact(requestIndex());
+                Processor.removeContact(requestIndex());
                 System.out.println("\n... Contact has been removed from the database.");
                 display();
+                break;
             case 4:
                 System.out.println("\nHere is the list of all your contacts: ");
-                taskProcessing.listContacts();
+                Processor.listContacts();
                 display();
+                break;
             case 5:
                 System.out.println("\nYou have chosen to search for a contact, please follow instructions below: ");
                 index = searchFirstName();
                 System.out.println("\n" + contacts.get(index));
                 display();
+                break;
             case 6:
                 break;
         }
@@ -119,6 +125,8 @@ public class commandGUI {
         System.out.print("Enter @Twitter details: ");
         contactsData.add(input.nextLine());
 
+        System.out.println("\nContact has been added / changed.");
+
         return contactsData;
     }
 
@@ -126,7 +134,7 @@ public class commandGUI {
         System.out.print("\nEnter the First Name of the Contact: ");
         String firstName = input.next();
         System.out.println("\nContact was found!");
-        return taskProcessing.searchContact(firstName);
+        return Processor.searchContact(firstName);
     }
 
     static int requestIndex() {
