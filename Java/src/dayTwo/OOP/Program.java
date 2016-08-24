@@ -14,7 +14,9 @@ public class Program {
 
         //commandGUI.display();
         peopleGenerator.addPeople();
-        taskProcessing.executeGUI();
+        //taskProcessing.executeGUI();
+
+        welcomeWindow start = new welcomeWindow();
 
     }
 }

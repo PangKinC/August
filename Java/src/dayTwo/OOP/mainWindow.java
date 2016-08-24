@@ -197,7 +197,7 @@ public class mainWindow implements ActionListener {
         updateBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                taskProcessing.createEmployee();
             }
         });
 
@@ -218,6 +218,7 @@ public class mainWindow implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         String action = e.getActionCommand();
 
         if ("New".equals(action)) {
@@ -262,5 +263,10 @@ public class mainWindow implements ActionListener {
     }
 
     public JPanel getInputPanel() { return inputPanel; }
+
+    public mainWindow getMainFrame() {
+        return this;
+    }
+
 
 }

@@ -13,14 +13,14 @@ public class taskProcessing {
 
     static mainWindow gui;
 
-    static void executeGUI() {
-        gui = new mainWindow();
-    }
+    static void executeGUI() { gui = new mainWindow(); }
 
-    static void createEmployee(){
+
+
+
+    /*static void createEmployee(List<String> data){
 
         Employee temp = new Employee(
-                gui.
                 data.get(0),
                 data.get(1),
                 Short.parseShort(data.get(2)),
@@ -38,6 +38,42 @@ public class taskProcessing {
 
         people.add(temp);
 
+    }*/
+
+    static void createEmployee() {
+
+        String data1 = gui.getMainFrame().getFirstNameTxt().toString();
+        String data2 = gui.getMainFrame().getLastNameTxt().toString();
+        String data3 = gui.getMainFrame().getHeightTxt().toString();
+        String data4 = gui.getMainFrame().getWeightTxt().toString();
+
+        String data5 = gui.getMainFrame().getDobTxt().toString();
+        String[] dobData = data5.split("/");
+
+        String data6 = gui.getMainFrame().getSexTxt().toString();
+        String data7 = gui.getMainFrame().getPosTxt().toString();
+
+        String data8 = gui.getMainFrame().getHireTxt().toString();
+        String[] hireData = data8.split("/");
+
+        Employee temp = new Employee(
+
+                data1,
+                data2,
+                Short.parseShort(data3),
+                Double.parseDouble(data4),
+                LocalDate.of(
+                        Integer.parseInt(dobData[0]),
+                        Integer.parseInt(dobData[1]),
+                        Integer.parseInt(dobData[2])),
+                checkSex(data6),
+                data7,
+                LocalDate.of(
+                        Integer.parseInt(hireData[0]),
+                        Integer.parseInt(hireData[1]),
+                        Integer.parseInt(hireData[2])));
+
+        people.add(temp);
     }
 
     static void printAll() {

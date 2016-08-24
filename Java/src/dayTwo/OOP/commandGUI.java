@@ -38,7 +38,7 @@ public class commandGUI {
         switch (choice) {
             case 1:
                 tempData = inputScreen();
-                taskProcessing.createEmployee(tempData);
+                taskProcessing.createEmployee();
                 display();
                 break;
             case 2:
