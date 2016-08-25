@@ -126,14 +126,14 @@ public class mainWindow implements ActionListener {
         fileMenu.add(newMenuItem);
 
         exitMenuItem = new JMenuItem("Exit");
-        exitMenuItem.setMnemonic(KeyEvent.VK_E);
+        exitMenuItem.setMnemonic(KeyEvent.VK_X);
         exitMenuItem.addActionListener(this);
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
 
         editMenu = new JMenu("Edit");
-        fileMenu.setMnemonic(KeyEvent.VK_D);
+        fileMenu.setMnemonic(KeyEvent.VK_E);
 
         indexMenuItem = new JMenuItem("Search");
         indexMenuItem.setMnemonic(KeyEvent.VK_S);

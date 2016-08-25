@@ -8,7 +8,8 @@ import static addressBook.contactGenerator.addContact;
 public class Program {
     public static void main(String[] args) {
         addContact();
-        GUI.display();
+        //GUI.display();
+        new mainWindow();
     }
 }
 

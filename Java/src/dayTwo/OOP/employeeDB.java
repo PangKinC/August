@@ -36,8 +36,10 @@ public class employeeDB {
             for (int i = 1; i <= columnCount; i++) {
                 data.add(rs.getString(i));
             }
-            taskProcessing.printAll(data);
+            taskProcessing.printAll();
         }
+        return data;
     }
+
 
 }

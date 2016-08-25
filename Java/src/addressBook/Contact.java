@@ -56,6 +56,10 @@ public class Contact extends Person{
         this.facebook = facebook;
     }
 
+    public Address getAddress() {
+        return a;
+    }
+
     Contact() {}
 
     public Contact(String firstName, String lastName, LocalDate birthDate, Address a, String phoneNumber, String mobileNumber, String email, String facebook, String twitter) {
@@ -76,7 +80,4 @@ public class Contact extends Person{
                                 this.twitter);
     }
 
-    public Address getAddress() {
-        return a;
-    }
 }
