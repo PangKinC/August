@@ -11,14 +11,7 @@ import static dayTwo.OOP.peopleGenerator.people;
 
 public class taskProcessing {
 
-    static mainWindow gui;
-
-    static void executeGUI() { gui = new mainWindow(); }
-
-
-
-
-    /*static void createEmployee(List<String> data){
+    static void createEmployee(List<String> data){
 
         Employee temp = new Employee(
                 data.get(0),
@@ -38,9 +31,9 @@ public class taskProcessing {
 
         people.add(temp);
 
-    }*/
+    }
 
-    static void createEmployee() {
+    /*static void createEmployee() {
 
         String data1 = gui.getMainFrame().getFirstNameTxt().toString();
         String data2 = gui.getMainFrame().getLastNameTxt().toString();
@@ -74,7 +67,7 @@ public class taskProcessing {
                         Integer.parseInt(hireData[2])));
 
         people.add(temp);
-    }
+    }*/
 
     static void printAll() {
         for (Person e : people) {
