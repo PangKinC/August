@@ -378,7 +378,7 @@ public class mainWindow implements ActionListener {
 
         String action = e.getActionCommand();
 
-        if ("New".equals(action)) {
+        if ("New".equals(action) || "KeyEvent.VK_N".equals(action)) {
             clearTextFields();
             if (conIndex < 0) { createNew = true; }
             listPanel.setVisible(true);

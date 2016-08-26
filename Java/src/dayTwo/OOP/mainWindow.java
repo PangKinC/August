@@ -10,6 +10,7 @@ import java.awt.event.*;
 
 import static dayTwo.OOP.peopleGenerator.people;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -232,9 +233,14 @@ public class mainWindow implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (createNew && empList.isSelectionEmpty()) {
-                    taskProcessing.createEmployee(getFieldsInfo());
-                    createEmpList();
-                    clearTxtFields();
+                    try {
+                        taskProcessing.newEmployee(getFieldsInfo());
+                        createEmpList();
+                        clearTxtFields();
+                    } catch (SQLException createEX) {
+                        JOptionPane.showMessageDialog(null, "ERROR ADDING EMPLOYEE" +
+                                System.lineSeparator() + createEX);
+                    }
                 }
                 else {
                     taskProcessing.editDetails(empIndex, getFieldsInfo());
@@ -303,8 +309,8 @@ public class mainWindow implements ActionListener {
         firstNameTxt.setText("");
         lastNameTxt.setText("");
         weightTxt.setText("");
-        heightTxt.setText("");
-        dobTxt.setText("");
+
+        dobTxt.setText("");     heightTxt.setText("");
         sexTxt.setText("");
         posTxt.setText("");
         hireTxt.setText("");
@@ -330,21 +336,12 @@ public class mainWindow implements ActionListener {
 
         data.add(firstNameTxt.getText());
         data.add(lastNameTxt.getText());
-        data.add(heightTxt.getText());
         data.add(weightTxt.getText());
-
-        String[] dobData = dobTxt.getText().split("-");
-        data.add(dobData[0]);
-        data.add(dobData[1]);
-        data.add(dobData[2]);
-
+        data.add(heightTxt.getText());
+        data.add(dobTxt.getText());
         data.add(sexTxt.getText());
         data.add(posTxt.getText());
-
-        String[] hireData = hireTxt.getText().split("-");
-        data.add(hireData[0]);
-        data.add(hireData[1]);
-        data.add(hireData[2]);
+        data.add(hireTxt.getText());
 
         return data;
     }
