@@ -59,7 +59,6 @@ public class welcomeWindow extends JFrame {
 
         setVisible(true);
 
-
     }
 }
 
