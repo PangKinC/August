@@ -5,10 +5,11 @@ package computerShop;
  */
 public class Laptop extends Computer {
 
-    private short batteryLife;
+    private int lapStock;
+    private int batteryLife;
     private double weight;
 
-    public short getBatteryLife() {
+    public int getBatteryLife() {
         return batteryLife;
     }
 
@@ -24,17 +25,22 @@ public class Laptop extends Computer {
         this.weight = weight;
     }
 
+    public int getLapStock() {
+        return lapStock;
+    }
+
     Laptop() {}
 
-    public Laptop(String model, String cpuModel, double cpuSpeed, String gpuModel, short ram, int hdSpace, double price, short batteryLife, double weight) {
+    public Laptop(String model, String cpuModel, double cpuSpeed, String gpuModel, int ram, int hdSpace, double price, int batteryLife, double weight) {
         super(model, cpuModel, cpuSpeed, gpuModel, ram, hdSpace, price);
         this.batteryLife = batteryLife;
         this.weight = weight;
+        lapStock++;
     }
 
     @Override
     public String toString() {
-        return String.format("Laptop: %s, %s, %s.", super.toString(), this.batteryLife, this.weight);
+        return String.format("Laptop: %s, Battery: %s hours, Weight: %skg.", super.toString(), this.batteryLife, this.weight);
     }
 
 }

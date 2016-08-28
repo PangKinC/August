@@ -5,6 +5,7 @@ package computerShop;
  */
 public class Program {
     public static void main(String[] args) {
+        Generator.addComputers();
         GUI.display();
     }
 }

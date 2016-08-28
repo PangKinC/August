@@ -11,11 +11,25 @@ public class Customer extends Person {
 
     private String address;
     private String billingAddress;
-    private long creditCardNo;
+    private String creditCardNo;
     private String contactNo;
     private String email;
     private List<Laptop> cusLaptops = new ArrayList<>();
     private List<Desktop> cusDesktop = new ArrayList<>();
+    private List<Computer> cusComputers = new ArrayList<>();
+
+    public List<Computer> getCusComputers() {
+        return cusComputers;
+    }
+
+
+    public List<Laptop> getCusLaptops() {
+        return cusLaptops;
+    }
+
+    public List<Desktop> getCusDesktop() {
+        return cusDesktop;
+    }
 
     public String getAddress() {
         return address;
@@ -33,11 +47,11 @@ public class Customer extends Person {
         this.billingAddress = billingAddress;
     }
 
-    public long getCreditCardNo() {
+    public String getCreditCardNo() {
         return creditCardNo;
     }
 
-    public void setCreditCardNo(long creditCardNo) {
+    public void setCreditCardNo(String creditCardNo) {
         this.creditCardNo = creditCardNo;
     }
 
@@ -59,7 +73,7 @@ public class Customer extends Person {
 
     Customer() {}
 
-    public Customer(String firstName, String lastName, LocalDate birthDate, String address, String billingAddress, String contactNo, long creditCardNo, String email) {
+    public Customer(String firstName, String lastName, LocalDate birthDate, String address, String billingAddress, String contactNo, String creditCardNo, String email) {
 
         super(firstName, lastName, birthDate);
         this.address = address;
@@ -70,13 +84,17 @@ public class Customer extends Person {
 
     }
 
+    public void addDesktop(Desktop d) { cusDesktop.add(d); }
     public void addLaptop(Laptop l) {
         cusLaptops.add(l);
     }
+    public void addComp(Computer c) { cusComputers.add(c); }
 
     @Override
     public String toString() {
-        return String.format("Customer: %s, %s, %s, %s, %s, %s.", super.toString(), this.address, this.billingAddress, this.contactNo, this.creditCardNo, this.email);
+        return String.format("Customer: %s, Address: %s, \nBilling Address: %s, Phone Number: %s, " +
+                "Credit Card No: %s, E-mail: %s.", super.toString(), this.address,
+                this.billingAddress, this.contactNo, this.creditCardNo, this.email);
     }
 
 

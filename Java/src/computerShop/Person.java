@@ -73,6 +73,6 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return String.format("%s, %s, D.O.B: %s, Age: %s.", this.firstName, this.lastName, this.birthDate, this.getAge());
+        return String.format("%s %s, D.O.B: %s, Age: %s", this.firstName, this.lastName, this.birthDate, this.getAge());
     }
 }

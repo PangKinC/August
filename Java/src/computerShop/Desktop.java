@@ -5,6 +5,9 @@ package computerShop;
  */
 public class Desktop extends Computer {
 
+    private int deskStock;
+    private int totalPrice;
+    private int totalStock;
     private String mouse;
     private String keyboard;
     private String monitor;
@@ -44,17 +47,30 @@ public class Desktop extends Computer {
         this.speakers = speakers;
     }
 
+    public int getDeskStock() {
+        return deskStock;
+    }
+
+    public int getTotalPrice() { return totalPrice; }
+
+    public int getTotalStock() {
+        return totalStock;
+    }
+
     Desktop(){}
 
-    public Desktop(String model, String cpuModel, double cpuSpeed, String gpuModel, short ram, int hdSpace, double price, String keyboard, String monitor, String mouse) {
+    public Desktop(String model, String cpuModel, double cpuSpeed, String gpuModel, int ram, int hdSpace, double price, String monitor, String keyboard, String mouse) {
         super(model, cpuModel, cpuSpeed, gpuModel, ram, hdSpace, price);
         this.keyboard = keyboard;
         this.monitor = monitor;
         this.mouse = mouse;
         hasSpeakers = false;
+        deskStock++;
+        totalPrice += price;
+        totalStock += deskStock;
     }
 
-    public Desktop(String model, String cpuModel, double cpuSpeed, String gpuModel, short ram, int hdSpace, double price, String keyboard, String monitor, String mouse, String speakers) {
+    public Desktop(String model, String cpuModel, double cpuSpeed, String gpuModel, int ram, int hdSpace, double price, String monitor, String keyboard, String mouse, String speakers) {
         super(model, cpuModel, cpuSpeed, gpuModel, ram, hdSpace, price);
         this.hasSpeakers = true;
         this.keyboard = keyboard;
@@ -62,16 +78,19 @@ public class Desktop extends Computer {
         this.mouse = mouse;
         this.speakers = speakers;
         hasSpeakers = true;
+        deskStock++;
+        totalPrice += price;
+        totalStock += deskStock;
     }
 
     @Override
     public String toString() {
 
         if (hasSpeakers == false) {
-            stringSentence = String.format("Desktop: %s, %s, %s, %s.", super.toString(), this.keyboard, this.monitor, this.mouse);
+            stringSentence = String.format("Desktop: %s, Monitor: %s, Keyboard: %s, Mouse: %s.", super.toString(), this.monitor, this.keyboard, this.mouse);
         }
         else {
-            stringSentence = String.format("Desktop: %s, %s, %s, %s, %s.", super.toString(), this.keyboard, this.monitor, this.mouse, this.speakers);
+            stringSentence = String.format("Desktop: %s, Monitor: %s, Keyboard: %s, Mouse: %s, Speakers: %s.", super.toString(), this.monitor, this.keyboard, this.mouse, this.speakers);
         }
         return stringSentence;
 

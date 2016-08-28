@@ -6,7 +6,8 @@ package dayOne.primitives;
 public class Arrays {
 
     public static void main(String[] args){
-        int[] test = { 3, 2, 2, 6, 7, 9, 7, 10};
+
+        int[] test = { 3, 2, 2, 6, 9, 7, 8, 10};
         int[] testTwo = { 0, 2, 3, 1, 5 };
         int[] testThree = {1, 0, 2};
 
@@ -129,26 +130,18 @@ public class Arrays {
     }
 
     static void sumSixSeven(int[] numbers) {
-        int result = 0;
-        boolean sixFound = false;
-        int resultTwo = 0;
+        int calc, result = 0;
+        boolean inBetween = false;
+
 
         for (int i = 0; i < numbers.length; i++){
-            resultTwo = numbers[i];
+            calc = numbers[i];
 
-            if (numbers[i] == 6 && sixFound) {
-                sixFound = true;
-                resultTwo -= 6;
-            }
-            else if (numbers[i] == 7 && !sixFound) {
-                sixFound = false;
-            }
-            else if (numbers[i] != 6 && numbers[i] != 7 && sixFound) {
-                   resultTwo += numbers[i];
-            }
-            result = resultTwo;
+            if (calc == 6 && !inBetween) { inBetween = true; }
+            else if (calc == 7 && inBetween) { inBetween = false; }
+            else if (!inBetween) { result += calc; }
         }
-        System.out.println(result);
+        System.out.println(String.format("The sum of all numbers not between 6 and 7 is %s.", result));
     }
 
     static boolean hasTwoTwo(int[] numbers){
