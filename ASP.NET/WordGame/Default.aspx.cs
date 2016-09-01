@@ -20,14 +20,17 @@ public partial class _Default : System.Web.UI.Page
         btnList = new List<Button>() { qBtn, wBtn, eBtn, rBtn, tBtn, yBtn, uBtn, iBtn, oBtn, pBtn,
                                        aBtn, sBtn, dBtn, fBtn, gBtn, hBtn, jBtn, kBtn, lBtn,
                                        zBtn, xBtn, cBtn, vBtn, bBtn, nBtn, mBtn };
-
-        setup();
-
+        if (!Page.IsPostBack)
+        {
+            setup();
+        }
     }
 
     public void setup()
     {
-        readFile = File.ReadAllLines(@"C:\Users\Suijin\Documents\GitHub\August\ASP.NET\WordGame\Resources\words.txt");
+        wordLbl.Text = "";
+        // readFile = File.ReadAllLines(@"C:\Users\Suijin\Documents\GitHub\August\ASP.NET\WordGame\Resources\words.txt");
+        readFile = File.ReadAllLines(@"C:\Users\student\Kin Pang\GitHub\August\ASP.NET\WordGame\Resources\wordsP.txt");
         randomIndex = (new Random().Next(readFile.Length));
         word = readFile[randomIndex].ToUpper();
 
@@ -41,38 +44,43 @@ public partial class _Default : System.Web.UI.Page
 
         wordLbl.Text = hidden;
         testLbl2.Text = word;
-
     }
 
-    public void updateScreen()
+    protected void letterGuessed (object sender, EventArgs e)
     {
-        wordLbl.Text = hidden;
-    }
+        Button btn = sender as Button;
+        char letter = btn.Text.ElementAt(0);
 
+        string test = word;
 
-    public void letterGuessed (object sender, CommandEventArgs e)
-    {
-        string letter = e.CommandArgument.ToString();
-        letter.ToCharArray(); ;
-        
+        //string letter = e.CommandArgument.ToString();
+        //letter.ToCharArray();
+
         if (word.Contains(letter)) {
             char[] hiddenChar = hidden.ToCharArray();
             char[] wordChar = word.ToCharArray();
 
+ 
+
             for (int i = 0; i < wordChar.Length; i++) {
-                if (wordChar[i] == letter[0]) { hiddenChar[i] = letter[0]; }
+                if (wordChar[i] == letter) { hiddenChar[i] = letter; }
             }
 
             hidden = new string(hiddenChar);
             updateScreen();
-        } 
+        }
 
-        testLbl.Text += e.CommandArgument;
+        testLbl.Text += btn.Text;
 
         foreach (Button b in btnList) {
-            if (b.Text.Equals(e.CommandArgument)) { b.Enabled = false; }
+            if (b.Text.Equals(btn.Text)) { b.Enabled = false; }
         }
 
     }
-    
+
+    protected void updateScreen()
+    {
+        wordLbl.Text = hidden;
+    }
+
 }

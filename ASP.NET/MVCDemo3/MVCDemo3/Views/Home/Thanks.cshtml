@@ -1,0 +1,41 @@
+﻿@model MVCDemo3.Models.guestResponse
+
+@{
+    ViewBag.Title = "Thanks";
+}
+
+@{ 
+    try
+    {
+        WebMail.SmtpServer = "smtp.gmail.com";
+        WebMail.SmtpPort = 587;
+        WebMail.EnableSsl = true;
+        WebMail.UserName = "kinchungpang@gmail.com";
+        WebMail.Password = "";
+        WebMail.From = "rsvps@example.com";
+
+        WebMail.Send("kinchungpang@gmail.com", "RSVP Notification",
+                        Model.name + " is " + ((Model.willAttend ?? false) ?  "" : "not")
+                        + " attending");
+    } catch (Exception) { <b> Sorry - we couldn't send the email to confirm your RSVP. </b> }
+}
+
+
+<div class="text-center">
+
+    <h1> Thank you, @Model.name. </h1>
+    <div class="lead">
+
+        <br />
+        <p> Your contact details are: @Model.email and @Model.phoneNo.</p>
+        <br />
+        @if (Model.willAttend == true)
+        {
+            @:It's great you're coming! The drinks are in the fridge.
+        }
+        else {
+            @:Sorry that you can't make it, no drinks for you.
+        }
+
+    </div>
+</div>

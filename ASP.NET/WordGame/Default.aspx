@@ -23,18 +23,18 @@
         <asp:Label ID="testLbl2" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Button ID="qBtn" runat="server" Text="Q" CommandArgument="Q" OnCommand="letterGuessed" />
-        <asp:Button ID="wBtn" runat="server" Text="W" CommandArgument="W" OnCommand="letterGuessed" />
-        <asp:Button ID="eBtn" runat="server" Text="E" CommandArgument="E" OnCommand="letterGuessed" />
-        <asp:Button ID="rBtn" runat="server" Text="R" CommandArgument="R" OnCommand="letterGuessed" />
-        <asp:Button ID="tBtn" runat="server" Text="T" CommandArgument="T" OnCommand="letterGuessed" />
-        <asp:Button ID="yBtn" runat="server" Text="Y" CommandArgument="Y" OnCommand="letterGuessed" />
-        <asp:Button ID="uBtn" runat="server" Text="U" CommandArgument="U" OnCommand="letterGuessed" />
-        <asp:Button ID="iBtn" runat="server" Text="I" CommandArgument="I" OnCommand="letterGuessed" />
-        <asp:Button ID="oBtn" runat="server" Text="O" CommandArgument="O" OnCommand="letterGuessed" />
-        <asp:Button ID="pBtn" runat="server" Text="P" CommandArgument="P" OnCommand="letterGuessed" />
+        <asp:Button ID="qBtn" runat="server" Text="Q" CommandArgument="Q" OnClick="letterGuessed" />
+        <asp:Button ID="wBtn" runat="server" Text="W" CommandArgument="W" OnClick="letterGuessed" />
+        <asp:Button ID="eBtn" runat="server" Text="E" CommandArgument="E" OnClick="letterGuessed" />
+        <asp:Button ID="rBtn" runat="server" Text="R" CommandArgument="R" OnClick="letterGuessed" />
+        <asp:Button ID="tBtn" runat="server" Text="T" CommandArgument="T" OnClick="letterGuessed" />
+        <asp:Button ID="yBtn" runat="server" Text="Y" CommandArgument="Y" OnClick="letterGuessed" />
+        <asp:Button ID="uBtn" runat="server" Text="U" CommandArgument="U" OnClick="letterGuessed" />
+        <asp:Button ID="iBtn" runat="server" Text="I" CommandArgument="I" OnClick="letterGuessed" />
+        <asp:Button ID="oBtn" runat="server" Text="O" CommandArgument="O" OnClick="letterGuessed" />
+        <asp:Button ID="pBtn" runat="server" Text="P" CommandArgument="P" OnClick="letterGuessed" />
         <br />
-        <asp:Button ID="aBtn" runat="server" Text="A" CommandArgument="A" OnCommand="letterGuessed" />
+        <asp:Button ID="aBtn" runat="server" Text="A" CommandArgument="A" OnClick="letterGuessed" />
         <asp:Button ID="sBtn" runat="server" Text="S" CommandArgument="S" OnCommand="letterGuessed" />
         <asp:Button ID="dBtn" runat="server" Text="D" CommandArgument="D" OnCommand="letterGuessed" />
         <asp:Button ID="fBtn" runat="server" Text="F" CommandArgument="F" OnCommand="letterGuessed" />
