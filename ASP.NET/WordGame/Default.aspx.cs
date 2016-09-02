@@ -43,15 +43,17 @@ public partial class _Default : System.Web.UI.Page
                                        zBtn, xBtn, cBtn, vBtn, bBtn, nBtn, mBtn };
 
 
-        if (!scriptManager.IsInAsyncPostBack)
+        /*if (Session["timer"] == null)
         {
-            Session["timeout"] = DateTime.Now.AddSeconds(30).ToString();
-        }
+            startTimer(30);
+            //Session["timeout"] = DateTime.Now.AddSeconds(30).ToString();
+        }*/
 
-        if (!IsPostBack)
+        if (!IsPostBack) 
         {
             scoreLbl.Text = "SCORE: 0";
             setup();
+            startTimer(30);
         }   
     }
 
@@ -138,6 +140,12 @@ public partial class _Default : System.Web.UI.Page
 
     }
 
+    public void startTimer(int seconds)
+    {
+        Session.Add("timer", seconds);
+        timer.Enabled = true;
+    }
+
     protected void updateScreen()
     {
         wordLbl.Text = "";
@@ -158,6 +166,17 @@ public partial class _Default : System.Web.UI.Page
 
     protected void timer_Tick(object sender, EventArgs e)
     {
+        int seconds = (int)Session["timer"];
+        if (seconds > 0)
+        {
+            seconds--;
+            Session["timer"] = seconds;
+            timeLbl.Text = seconds.ToString();
+        }
+        else
+        {
+            timer.Enabled = false;
+        }
         /*if (timeLeft > 0)
         {
             timeLeft--;
@@ -177,12 +196,12 @@ public partial class _Default : System.Web.UI.Page
 
         
         }*/
-        if (0 > DateTime.Compare(DateTime.Now, DateTime.Parse(Session["timeout"].ToString())))
+        /*if (0 > DateTime.Compare(DateTime.Now, DateTime.Parse(Session["timeout"].ToString())))
         {
             timeLbl.Text = "Number of seconds left: " +
             ((Int32)DateTime.Parse(Session["timeout"].
             ToString()).Subtract(DateTime.Now).TotalSeconds).ToString();
-        }
+        }*/
 
     }
 }
