@@ -28,6 +28,8 @@
 &nbsp;<asp:Label ID="lettersLbl" runat="server"></asp:Label>
         <br />
         <asp:Label ID="hintLbl" runat="server"></asp:Label>
+            <br />
+            <asp:Label ID="chainLbl" runat="server"></asp:Label>
         <br />
         <br />
         <asp:Button ID="qBtn" runat="server" Text="Q" CommandArgument="Q" OnCommand="letterGuessed" />
@@ -73,11 +75,17 @@
         <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="timer_Tick"> </asp:Timer>
     
         <br />
-        <asp:Button ID="newBtn" runat="server" Text="Restart" />
+        <asp:Button ID="newBtn" runat="server" Text="Restart" OnClick="newBtn_Click" Visible="False" />
 &nbsp;
-        <asp:Button ID="exitBtn" runat="server" Text="Exit" Width="62px" OnClick="exitBtn_Click" />
+        <asp:Button ID="exitBtn" runat="server" Text="Exit" Width="62px" OnClick="exitBtn_Click" Visible="False" />
+        <br />
         <br />
     
+
+        <br />
+        <br />
+
+
 
     </div>
     </form>

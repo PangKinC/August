@@ -15,35 +15,18 @@ using System.Web.UI;
 
 // To-do List:
 // -- Add timer to the game, decrement/increment depending if user guesses word correctly.
-// - Let the hidden word ignore spaces so can use multiple words.
+// -- Let the hidden word ignore spaces so can use multiple words.
 // -- Create a hint for each of the hidden word possibly using the split() method.
 // Make the game detect keypresses from keyboard as a second input method.
 // Use Bootstrap & CSS to make things more pretty.
 
 public partial class _Default : System.Web.UI.Page
 {
-    // Here we define all the variables that would be used in the program, I will explain a few below.
-    // The two variables here both play a role in reading file path and turning it into a single string.
-    //private static string[] readPath = new string[];
-    //static string[] readPath = new string[]();
-    private static string readFile;
+    // Here we define all the variables that would be used in the program.
 
-    // The different data structures to be used, we use the first list to add in the single string from the file.
-    // The second dictionary adds from the first list then splits into the last two seperate lists.
-    private static List<string> wholeList = new List<string>();
-    private static Dictionary<string, string> splitList = new Dictionary<string, string>();
-    private static List<string> wordsList = new List<string>();
-    private static List<string> hintsList = new List<string>();
-
-    // Delimiter which we use for our split() method to seperate the single string from file into multiple strings.
-    private static char[] delimiter = { '_' };
-    // This list of buttons holds all the different alphabet keys.
-    private static List<Button> btnList;
-    // Boolean to determine whether word guess is correct.
+    private static string[] readFile;
     private static bool correctWord;
-    // We use this to increment our timer used for the game.
-    private static int seconds { get; set; }
-
+ 
     private static double score;
     private static double currentScore;
     private static double multiplier;
@@ -56,8 +39,15 @@ public partial class _Default : System.Web.UI.Page
     private static string letter;
     private static string hint;
 
+    private static int chainMulti;
+    private static int currentChain;
     private static int randomIndex;
     private static int wrongGuess;
+    private static int seconds { get; set; }
+
+    private static Dictionary<string, string> splitList = new Dictionary<string, string>();
+    private static List<Button> btnList;
+
 
     // The set of instructions which is done as soon as the page is loaded.
     protected void Page_Load(object sender, EventArgs e)
@@ -70,41 +60,18 @@ public partial class _Default : System.Web.UI.Page
         // This if statement goes through as long as the page is not in a postback state.
         if (!IsPostBack) 
         {
-            // The readPath variable reads our file from the resources directory, note that we don't need to specify the whole file path.
-            /*readPath = File.ReadAllLines(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"Resources\wordsP.txt")); 
-
-            readPath.ToString().Split('_');*/
-
-            string[] lines = File.ReadAllLines(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"Resources\test.txt"));
-            splitList = lines.Select(l => l.Split('_')).ToDictionary(a => a[0], a => a[1]);
-
-            //splitList.Add()
-
-            // Simple for loop which reads through the readPath and adds them into readFile as single string.
-            //for (int i = 0; i < readPath.Count(); i++) { readFile += readPath[i]; }
-             
-            // The list: wholelist then adds the above readFile string array and splits them with the characters specified above.
-           // wholeList.AddRange(readFile.Split(delimiter));
-
-            // This time we add the wholelist into a dictionary using a for loop, note it takes the index from the for loop as the key for the dictionary.
-            // Note there's a if statement so keys don't get duplicated.
-            /*for (int i = 0; i < wholeList.Count(); i++) {
-                if (!splitList.ContainsKey(i)) { splitList.Add(i, wholeList[i]); }
-            }*/
-
-          
-
-            // Using a lambda expression, we do a modular calculation on the dictionary keys to split the values
-            // into two different lists (the word and hint more specifically)
-            //wordsList = splitList.Where(item => item.Key % 2 == 0).Select(item => item.Value).ToList();
-            //hintsList = splitList.Where(item => item.Key % 2 != 0).Select(item => item.Value).ToList();
+            // The readFile variable reads our file from the resources directory.
+            // Note that we don't need to specify the whole file path.
+            readFile = File.ReadAllLines(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"Resources\test.txt"));
+            // Here we split a the above readFile (which is a string array) by the character _ to seperate the word and hint.
+            // We then use a lambda expression to split each respective part as a key and value in the dictionary.
+            splitList = readFile.Select(l => l.Split('_')).ToDictionary(a => a[0], a => a[1]);
 
             // Sets the Score label to 0, only called here once because it changes throughout the game.
             // Then calls the setup method, which sets up a new hidden word and starts the timer for the game.
             scoreLbl.Text = "SCORE: 0";
+            chainLbl.Text = "Current Word Chain: " + chainMulti;
             setup();
-            startTimer(301);
-            seconds = (int)Session["timer"];
         }   
     }
 
@@ -116,12 +83,18 @@ public partial class _Default : System.Web.UI.Page
         lettersLbl.Text = "";
         wordLbl.Text = "";
 
+        if (seconds == 0) { startTimer(11); seconds = (int)Session["timer"]; }
+
+        newBtn.Visible = false;
+        exitBtn.Visible = false; 
+
         // We set the correctWord to false as it's a new word.
         correctWord = false;
         // The following integers and doubles are reset for the score and multiplier as well as number of wrong guesses.
         wrongGuess = 0;
         multiplier = 2.00;
         score = 500;
+    
 
         // These two labels text will be set to reflect the integer being reset.
         guessNoLbl.Text = "Wrong Letter Count: " + wrongGuess;
@@ -132,33 +105,19 @@ public partial class _Default : System.Web.UI.Page
         randomIndex = new Random().Next(splitList.Count());
 
         // We assign to the word and hint the same random index, and to take a single object from a list.
-        word = splitList.Keys.ElementAt(randomIndex);
+        // We also make all the letters in the word all uppercase.
+        word = splitList.Keys.ElementAt(randomIndex).ToUpper();
         hint = splitList.Values.ElementAt(randomIndex);
 
         // We set this label to the random hint from the above list.
-        hintLbl.Text = word;
+        hintLbl.Text = hint;
 
-        // Using some regular expressions replace any spaces between words with a forward slash.
-        //hidden = new Regex("/").Replace(word, "");
-        // Then we replace each of the letter/number with a _ to make it hidden.
-
-
-        //hidden = new Regex("([a-zA-z0-9])").Replace(hidden, "_");
-
-
-        // Finally we set the word label to the hidden word which is now a set of _
-        //wordLbl.Text = hidden;
-
-        // Using two different for loops, we iterate through the word length and assign to hidden the same number of _
-
-        wordChar = word.ToCharArray();
-
-        for (int i = 0; i < wordChar.Length; i++) {
-            if (wordChar[i] != '/')
-            {
-                hiddenChar[i] += '_';
-            }
-        }
+        // Here we use a regular expression to detect spaces in the word and replace it with a - character.
+        word = new Regex(" ").Replace(word, "-");
+        // We make hidden equal to the word.
+        hidden = word;
+        // And finally we replace all the letters OR numbers in hidden with a _ character.
+        hidden = new Regex("([a-zA-z0-9])").Replace(hidden, "_");
 
         // Using some minor string formating with substring we then place a space between each character.
         for (int i = 0; i < hidden.Length; i++) {
@@ -176,25 +135,27 @@ public partial class _Default : System.Web.UI.Page
     // We also use the Command argument e instead of the usual sender as button for the value.
     public void letterGuessed (object sender, CommandEventArgs e)
     {
+        
         // We take the command argument of the button then it into a string and finally a character array.
         letter = e.CommandArgument.ToString();
         letter.ToCharArray();
- 
+        // We then turn both the hidden and word into character arrays.
+        hiddenChar = hidden.ToCharArray();
+        wordChar = word.ToCharArray();
+
         // This if statement block checks the word in uppercase and see if it contains the above letter (char array)
-        if (word.ToUpper().Contains(letter)) {
-            // We then turn both the hidden and word into character arrays.
-            hiddenChar = hidden.ToCharArray();
-            wordChar = word.ToUpper().ToCharArray();
-            
+        if (word.Contains(letter)) {     
             // Using a for loop, which carries on until it reaches the max length of the word, it checks
             // Whether the character in the word matches the letter guessed. 
             // If it does we assign to the hidden string the new letter.
             for (int i = 0; i < word.Length; i++) {
-                if (wordChar[i] == letter[0]) { hiddenChar[i] = letter[0]; }
+                if (wordChar[i] == letter[0] && wordChar[i] != '-') { hiddenChar[i] = letter[0]; }
             }
 
             // Hidden then recompiles as a new string the above hidden character array with the new letter.
             hidden = new string(hiddenChar);
+            increaseTime(3);
+
             // We call the updateScreen() method to update all the visuals on screen.
             updateScreen();
         }
@@ -204,6 +165,8 @@ public partial class _Default : System.Web.UI.Page
             lettersLbl.Text += e.CommandArgument;
             // It also increments the wrong guess by a single 1 each incorrect guess.
             wrongGuess++;
+            decreaseTime(5);
+
 
             // This mini if else statement block changes the multiplier depending on the number of incorrect guesses.
             if (wrongGuess >= 1 && wrongGuess < 3) { multiplier = 1.75; }
@@ -216,10 +179,13 @@ public partial class _Default : System.Web.UI.Page
 
         // We use this foreach loop to make sure the same button cannot be pressed again.
         foreach (Button b in btnList) { if (b.Text.Equals(e.CommandArgument)) { b.Enabled = false; } }
-    
+
         // Finally if the hidden word has all been revealed (made equal to word), we set correctWord to true.
         // Then updateScreen() method for visuals and finally the setup() method to start a new word.
         if (hidden == word) {
+            if (wrongGuess == 0) { chainMulti = chainMulti + 1; }
+            else { chainMulti = 0; }
+            //chainMulti = chainMulti + 1;
             score *= multiplier;
             correctWord = true;
             updateScreen();
@@ -230,13 +196,15 @@ public partial class _Default : System.Web.UI.Page
     // The updateScreen() method is used to refresh all the relevant information shown on screen to the user.
     protected void updateScreen()
     {
+
         // We have to set the word label to empty on each click otherwise it would just get longer and longer.
         wordLbl.Text = "";
- 
+        
         // If the user guessed the correct word, we finally increment the score with this if statement.
         if (correctWord == true) {
             // Note that currentScore is made equal to score which is always a static 500
             // But the score label withs currentScore rather score as to increment on each correct word guess.
+            currentChain += chainMulti;
             currentScore += score;
             scoreLbl.Text = "SCORE: " + currentScore;
         }
@@ -244,12 +212,25 @@ public partial class _Default : System.Web.UI.Page
         // We update these respective labels the multiplier and the number of wrong guesses.
         guessNoLbl.Text = "Wrong Letter Count: " + wrongGuess;
         multiLbl.Text = "Current Multiplier: x" + multiplier;
+        chainLbl.Text = "Current Word Chain: " + chainMulti;
 
         // Finally we use this for loop to keep the string format the same throughout the game.
         for (int i = 0; i < hidden.Length; i++) {
             wordLbl.Text += hidden.Substring(i, 1);
             wordLbl.Text += " ";
         }
+
+    }
+
+    public void decreaseTime(int decrease)
+    {
+        Session["timer"] = seconds;
+        seconds = seconds - decrease;
+    }
+    public void increaseTime(int increase)
+    {
+        Session["timer"] = seconds;
+        seconds = seconds + increase;
     }
 
     // This mini method is purely here to start and increment the timer we use in the game.
@@ -273,12 +254,43 @@ public partial class _Default : System.Web.UI.Page
         }
         // Else if seconds is not over (aka is 0) this block of instructions goes off.
         else {
+
+            if ((chainMulti >= 2 && chainMulti < 4)) {
+                currentScore *= 3;
+                scoreLbl.Text = "FINAL SCORE x3: " + currentScore;
+                chainLbl.Text = String.Format("Good Job! 3x Chain Multiplier for: {0} Word Chain!", chainMulti);
+            }
+
+            else if (chainMulti >= 4) {
+                currentScore *= 4.5;
+                scoreLbl.Text = "FINAL SCORE x4.5: " + currentScore;
+                chainLbl.Text = String.Format("Great Job! 4.5x Chain Multiplier for: {0} Word Chain!", chainMulti);
+            }
+
+            else if (chainMulti == 1) {
+                currentScore *= 1.5;
+                scoreLbl.Text = "FINAL SCORE x1.5: " + currentScore;
+                chainLbl.Text = String.Format("Not Bad! 1.5x Chain Multiplier for: {0} Word Chain!", chainMulti);
+            }
+
+            else {
+                scoreLbl.Text = "FINAL SCORE x0: " + currentScore;
+                chainLbl.Text = String.Format("Sadly .. 0x Chain Multiplier for: {0} Word Chain :(", chainMulti);
+            }
+
+            newBtn.Visible = true;
+            exitBtn.Visible = true;
+
             // We show on the word label the whole word which the user was currently attempting.
             wordLbl.Text = word;
             // Disable every button found in the game.
             foreach (Button b in btnList) { b.Enabled = false; }
+            timeLbl.Text = "Time remaining: 0";
+
+
             // Finally we set the timer to not enabled (visible).
             timer.Enabled = false;
+
         }
     }
 
@@ -286,5 +298,12 @@ public partial class _Default : System.Web.UI.Page
     {
 
 
+    }
+
+    protected void newBtn_Click(object sender, EventArgs e)
+    {
+        currentScore = 0;
+        chainMulti = 0;
+        setup();
     }
 }
