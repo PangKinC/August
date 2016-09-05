@@ -12,6 +12,7 @@
     </style>
 </head>
 <body style="height: 574px">
+
     <form id="form1" runat="server">
     <asp:ScriptManager id="scriptManager" runat="server" />
     <div style="height: 606px">
@@ -71,6 +72,13 @@
         </asp:UpdatePanel>
         <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="timer_Tick"> </asp:Timer>
     
+        <br />
+        <asp:Button ID="newBtn" runat="server" Text="Restart" />
+&nbsp;
+        <asp:Button ID="exitBtn" runat="server" Text="Exit" Width="62px" OnClick="exitBtn_Click" />
+        <br />
+    
+
     </div>
     </form>
 </body>

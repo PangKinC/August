@@ -1,0 +1,3 @@
+Double_Data type that holds a bigger and more precise number
+Inheritance_Object Orientated Programming practice, where a subclass can inherit behaviour from a class
+Integer_Data type that holds a whole number, can be positive, negative or zero

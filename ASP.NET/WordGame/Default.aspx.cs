@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
+using System.Web.UI;
 
 // First Project: Word Guessing Game.
 /* My first project for portfolio, is a simple rendition of a word guessing game, unlike the traditional hangman 
@@ -11,30 +12,31 @@ using System.Text.RegularExpressions;
  * Some features include having a final score which goes up for every word the user gets right and 
  * a multiplier which increases/decrease the less letters a user guesses incorrectly,
  * along with a hint for each of the hidden word */
- 
+
 // To-do List:
 // -- Add timer to the game, decrement/increment depending if user guesses word correctly.
-// Make the game detect keypresses from keyboard as a second input method.
+// - Let the hidden word ignore spaces so can use multiple words.
 // -- Create a hint for each of the hidden word possibly using the split() method.
-// Let the hidden word ignore spaces so can use multiple words.
+// Make the game detect keypresses from keyboard as a second input method.
 // Use Bootstrap & CSS to make things more pretty.
 
 public partial class _Default : System.Web.UI.Page
-{ 
+{
     // Here we define all the variables that would be used in the program, I will explain a few below.
     // The two variables here both play a role in reading file path and turning it into a single string.
-    private static string[] readPath;
+    //private static string[] readPath = new string[];
+    //static string[] readPath = new string[]();
     private static string readFile;
 
     // The different data structures to be used, we use the first list to add in the single string from the file.
     // The second dictionary adds from the first list then splits into the last two seperate lists.
     private static List<string> wholeList = new List<string>();
-    private static Dictionary<int, string> splitList = new Dictionary<int, string>();
+    private static Dictionary<string, string> splitList = new Dictionary<string, string>();
     private static List<string> wordsList = new List<string>();
     private static List<string> hintsList = new List<string>();
 
     // Delimiter which we use for our split() method to seperate the single string from file into multiple strings.
-    private static char[] delimiter = { '_', '.' };
+    private static char[] delimiter = { '_' };
     // This list of buttons holds all the different alphabet keys.
     private static List<Button> btnList;
     // Boolean to determine whether word guess is correct.
@@ -68,31 +70,40 @@ public partial class _Default : System.Web.UI.Page
         // This if statement goes through as long as the page is not in a postback state.
         if (!IsPostBack) 
         {
-            // The readPath variable reads our file from the resources directory, note that we don't need to specify the whole path file.
-            readPath = File.ReadAllLines(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"Resources\test.txt"));
+            // The readPath variable reads our file from the resources directory, note that we don't need to specify the whole file path.
+            /*readPath = File.ReadAllLines(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"Resources\wordsP.txt")); 
+
+            readPath.ToString().Split('_');*/
+
+            string[] lines = File.ReadAllLines(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"Resources\test.txt"));
+            splitList = lines.Select(l => l.Split('_')).ToDictionary(a => a[0], a => a[1]);
+
+            //splitList.Add()
 
             // Simple for loop which reads through the readPath and adds them into readFile as single string.
-            for (int i = 0; i < readPath.Count(); i++) { readFile += readPath[i]; }
+            //for (int i = 0; i < readPath.Count(); i++) { readFile += readPath[i]; }
              
             // The list: wholelist then adds the above readFile string array and splits them with the characters specified above.
-            wholeList.AddRange(readFile.Split(delimiter));
+           // wholeList.AddRange(readFile.Split(delimiter));
 
-            // This time we add the wholelist into a dictionary using a for loop, note it takes the index from the 
-            // for loop as the key for the dictionary, note there's a if statement so keys don't get duplicated.
-            for (int i = 0; i < wholeList.Count(); i++) {
+            // This time we add the wholelist into a dictionary using a for loop, note it takes the index from the for loop as the key for the dictionary.
+            // Note there's a if statement so keys don't get duplicated.
+            /*for (int i = 0; i < wholeList.Count(); i++) {
                 if (!splitList.ContainsKey(i)) { splitList.Add(i, wholeList[i]); }
-            }
+            }*/
+
+          
 
             // Using a lambda expression, we do a modular calculation on the dictionary keys to split the values
             // into two different lists (the word and hint more specifically)
-            wordsList = splitList.Where(item => item.Key % 2 == 0).Select(item => item.Value).ToList();
-            hintsList = splitList.Where(item => item.Key % 2 != 0).Select(item => item.Value).ToList();
+            //wordsList = splitList.Where(item => item.Key % 2 == 0).Select(item => item.Value).ToList();
+            //hintsList = splitList.Where(item => item.Key % 2 != 0).Select(item => item.Value).ToList();
 
             // Sets the Score label to 0, only called here once because it changes throughout the game.
             // Then calls the setup method, which sets up a new hidden word and starts the timer for the game.
             scoreLbl.Text = "SCORE: 0";
             setup();
-            startTimer(31);
+            startTimer(301);
             seconds = (int)Session["timer"];
         }   
     }
@@ -118,32 +129,42 @@ public partial class _Default : System.Web.UI.Page
 
         // The random index uses the random class to assign new random number to take from the list.
         // It's max length never goes over max string count in the list.
-        randomIndex = new Random().Next(wordsList.Count());
+        randomIndex = new Random().Next(splitList.Count());
 
         // We assign to the word and hint the same random index, and to take a single object from a list.
-        word = wordsList[randomIndex];
-        hint = hintsList[randomIndex];
+        word = splitList.Keys.ElementAt(randomIndex);
+        hint = splitList.Values.ElementAt(randomIndex);
 
         // We set this label to the random hint from the above list.
         hintLbl.Text = word;
 
         // Using some regular expressions replace any spaces between words with a forward slash.
-        hidden = new Regex(" ").Replace(word, " / ");
+        //hidden = new Regex("/").Replace(word, "");
         // Then we replace each of the letter/number with a _ to make it hidden.
-        hidden = new Regex("([a-zA-z0-9])").Replace(hidden, "_ ");
-        // Finally we set the word label to the hidden word which is now a set of _
-        wordLbl.Text = hidden;
 
-        // Using two different for loops, we make go through the word length and assigns to hidden the same number of _
-        /*for (int i = 0; i < word.Length; i++) {
-            hidden += '_'; 
+
+        //hidden = new Regex("([a-zA-z0-9])").Replace(hidden, "_");
+
+
+        // Finally we set the word label to the hidden word which is now a set of _
+        //wordLbl.Text = hidden;
+
+        // Using two different for loops, we iterate through the word length and assign to hidden the same number of _
+
+        wordChar = word.ToCharArray();
+
+        for (int i = 0; i < wordChar.Length; i++) {
+            if (wordChar[i] != '/')
+            {
+                hiddenChar[i] += '_';
+            }
         }
 
-        // Using some minor string format with substring we then place a space between each character.
+        // Using some minor string formating with substring we then place a space between each character.
         for (int i = 0; i < hidden.Length; i++) {
             wordLbl.Text += hidden.Substring(i, 1);
             wordLbl.Text += " ";
-        }*/
+        }
 
         // Finally we enable all the buttons in the game again as it's a new word at this point.
         foreach (Button b in btnList) {
@@ -259,5 +280,11 @@ public partial class _Default : System.Web.UI.Page
             // Finally we set the timer to not enabled (visible).
             timer.Enabled = false;
         }
+    }
+
+    protected void exitBtn_Click(object sender, EventArgs e)
+    {
+
+
     }
 }
