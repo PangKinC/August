@@ -1,0 +1,3 @@
+For Loop_test_A loop that takes a index and stops after a certain length has been reached.
+While Loop_test_A loop which carries on as long as a condition hasn't been met.
+Do While Loop_test_A loop which goes through at least once and takes a condition for its runtime.
