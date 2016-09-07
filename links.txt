@@ -1,0 +1,5 @@
+https://msdn.microsoft.com/en-gb/library/ms178233.aspx
+
+http://www.codeproject.com/Articles/17241/Capturing-the-Enter-key-to-cause-a-button-click
+
+https://www.google.co.uk/?gfe_rd=cr&ei=XMnPV7q-EsHO8gfCiZe4Ag#q=C%23+random+not+getting+same+value+twice+in+a+row
