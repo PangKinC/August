@@ -4,3 +4,6 @@ C:\Users\student\Kin Pang\GitHub\August\Exercise2\Exercise2\bin\Debug\Exercise2.
 C:\Users\student\Kin Pang\GitHub\August\Exercise2\Exercise2\obj\Debug\Exercise2.csprojResolveAssemblyReference.cache
 C:\Users\student\Kin Pang\GitHub\August\Exercise2\Exercise2\obj\Debug\Exercise2.exe
 C:\Users\student\Kin Pang\GitHub\August\Exercise2\Exercise2\obj\Debug\Exercise2.pdb
+C:\Users\Suijin\Documents\GitHub\August\C#\Exercise2\Exercise2\bin\Debug\Exercise2.exe.config
+C:\Users\Suijin\Documents\GitHub\August\C#\Exercise2\Exercise2\obj\Debug\Exercise2.exe
+C:\Users\Suijin\Documents\GitHub\August\C#\Exercise2\Exercise2\obj\Debug\Exercise2.pdb
